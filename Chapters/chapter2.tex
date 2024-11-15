@@ -25,7 +25,7 @@ In this chapter we further detail the issues related to the Centralized Federate
 
 ...
 
-\subsection{membership Protocols}
+\subsection{Membership Protocols}
 \label{sub:membership_protocols}
 
 Membership protocols are vital for keeping decentralized swarm systems organized. These systems rely on many individual nodes that interact to accomplish tasks, and each node needs to know which other nodes are active at any moment. 
@@ -61,9 +61,9 @@ Broadcasting can be implemented using various techniques:
 
 \begin{enumerate}
 
-  \item Flooding: In flooding, a peer sends the message to all its directly connected peers, who then forward it to their connected peers, and so on, until the message reaches every peer in the network. This method can lead to message duplication and network congestion, as each peer may receive multiple copies of the same message.
-  \item Gossip Protocols: Each node randomly selects a few nodes to send the message, and those nodes, select randomly another subset of their connections, and so on. This method ensures that most or all nodes receive the message without overloading the network.
-  \item Multicasting: In structured P2P networks, multicasting can be more efficient than broadcasting. Instead of randomly sending messages to every node, it sends only to a specific group/subset of nodes who are most relevant to receive it. This is done by organizing nodes into groups or clusters and sending messages within those or between them.
+  \item \textbf{Flooding:} In flooding, a peer sends the message to all its directly connected peers, who then forward it to their connected peers, and so on, until the message reaches every peer in the network. This method can lead to message duplication and network congestion, as each peer may receive multiple copies of the same message.
+  \item \textbf{Gossip Protocols:} Each node randomly selects a few nodes to send the message, and those nodes, select randomly another subset of their connections, and so on. This method ensures that most or all nodes receive the message without overloading the network.
+  \item \textbf{Multicasting:} In structured P2P networks, multicasting can be more efficient than broadcasting. Instead of randomly sending messages to every node, it sends only to a specific group/subset of nodes who are most relevant to receive it. This is done by organizing nodes into groups or clusters and sending messages within those or between them.
 
 \end{enumerate}
 
@@ -103,7 +103,7 @@ Due to its simple design and well-established protocols for safe and effective a
 \label{sub:decentralized_federated_learning}
 
 Decentralised Federated Learning (DFL) reduces dependency on a central server, which helps to overcome some of the main limitations of CFL. Since model parameters are shared and aggregated in a distributed manner rather than via a single central aggregator, DFL distributes computational responsibility more widely throughout the network.
-However, even without a central server, DFL still maintains a mechanism for updating a global model through decentralized aggregation strategies, often involving clusters or peer-to-peer structures where nodes collaborate to aggregate model parameters locally before update the shared model.
+However, even without a central server, DFL still maintains a mechanism for updating a global model through decentralized aggregation strategies, often involving clusters or peer-to-peer structures where nodes collaborate to aggregate model parameters locally before updating the shared model.
 This decentralized approach minimizes bottlenecks and reduces the risk of single points of failure, making DFL inherently more fault tolerant and scalable. Additionally, it distributes trust across the entire network rather than concentrating it in a single entity, which can alleviate some concerns about trustworthiness in centralized environments. However, because node interactions are asynchronous, DFL makes it more difficult to maintain consistency in model updates, which can result in stale updates and slower convergence. It also increases communication overhead, as nodes must frequently exchange model parameters with their peers to keep the overall model aligned.
 Given that there is no central authority, it can be difficult to detect malicious participants during DFL, making security and privacy issues difficult to resolve. For DFL systems to reduce the risk of malicious attacks or data exposure, secure aggregation, anomaly detection, and model update verification require strong, decentralized protocols. These mechanisms are essential to maintain the integrity of the model and the privacy of participants in the decentralized framework. 
 
@@ -160,98 +160,107 @@ Both CFL and DFL approaches, while innovative in preserving data privacy during 
 
 \end{enumerate}
 
-\section{Folder and Files}
-\label{sec:folders_and_files}
+\section{Split Learning}
+\label{sec:split_learning}
 
-The \gls{novathesis} template is organized into many files and folders. At the main level it includes the following files and folders listed in Table~\ref{tab:folders_and_files}.
+Split learning (SL) has been proposed as a method for enabling resource-constrained devices to train multi-parameter neural networks (NNs) and participate in federated learning (FL). In essence, SL divides the NN model into sections, enabling clients (devices) to transfer the largest section as a processing task to a computationally robust helper. In SL, it is possible to have multiple helpers that can process model parts of one or more clients, resulting in a notable reduction in the maximum training time across all clients.
 
-\newcommand{\accessAllowed}{\includegraphics[align=c,width=1.9em]{access_allowed}}
-\newcommand{\accessForbiden}{\includegraphics[align=c,width=1.9em]{dont_touch}}
-\newcommand{\File}{\includegraphics[align=c,width=1.9em]{file}}
-\newcommand{\Folder}{\includegraphics[align=c,width=1.9em]{folder}}
+In the field of collaborative machine learning, SL provides distinct advantages over traditional federated learning (FL) by addressing the resource constraints and privacy challenges of small devices such as IoT sensors and mobile devices. SL allows these devices to participate in training complex models by transferring only a portion of the model to powerful helpers, which perform the more computationally intensive tasks. This model split reduces both the memory footprint and computational demand on client devices, which is essential for integrating learning frameworks in environments with limited resources.
+
+\subsection{Advantages of Split Learning}
+\label{sec:advantages_of_sl}
+
+SL’s architecture inherently supports several key benefits
+
+\begin{enumerate}
+	\item \textbf{Resource Efficiency:} 
+	
+	By offloading the heaviest computations to a helper, SL allows smaller devices to contribute to model training without exhausting their limited resources. This makes SL appropriate for IoT environments and low-processing-power smart devices.
+	
+	\item \textbf{Device Heterogeneity:} 
+	
+	SL’s split structure allows it to work across various hardware configurations and network capabilities. For example, SL´s heterogeneous structure enables the workload related to model training to be distributed among devices, helpers, and cloud, taking advantage of diverse computational resources to support scalable networks.
+\end{enumerate}
+
+\subsection{SL Architecture}
+\label{sec:sl_architecture}
+
+In SL, the neural network model is divided into sections, typically at two points called "cut layers." The client device handles the initial layers, which process the raw data. Then, only the activations (or "smashed data") from this initial processing are sent to the server, which takes over the heavier parts of the computation. This division reduces the memory and computational load on the client side and keeps sensitive raw data local, increasing privacy.
+
+\subsection{Applications of Split Learning in Emerging Fields}
+\label{sec:application_of_sl_in_emerging_fields}
 
 
-\bgroup
-    \rowcolors{1}{}{GhostWhite}
-      \begin{xltabular}{\textwidth}{>{\ttfamily}l>{\itshape}lcX}
-        \caption{The folders and files (top level).}
-        \label{tab:folders_and_files}\\
-        \toprule
-        \rowcolor{Gainsboro}%
-        Name & Type & Access & Contents \\
-        \midrule
-template.tex      & \File    & \accessForbiden &
-The main template file. You need to \emph{compile} this file with one of \pdfLaTeX, \XeLaTeX, or \LuaLaTeX\ to obtain the PDF file (”\texttt{template.pdf}”).  I recommend the usage of the ”\texttt{latexmk}” command or, if you use a UN*X-like OS, you may use ”\texttt{make}” (and the ggiven ”\texttt{Makefile}”).
-\\
-Config          & \Folder  & \accessAllowed &
-Configuration files.  Please customize your template by changing the files in this folder!
-\\
-Chapters          & \Folder  & \accessAllowed &
-Examples of document contents, including Chapters, Appendices, Annexes, Abstracts, Glossaries, Lists of Symbols, etc. Replace them with your own.
-\\
-Bibliography      & \Folder    & \accessAllowed &
-Where all your bibliography files should be located. You may have has many bibliography files as you want.
-\\
-template.pdf      & \File    & \accessAllowed &
-A possible result of applying \pdfLaTeX\ to the “\texttt{template.tex}” file. The look and feel of the document will depend on the parametriza\-tion/\-con\-fig\-u\-ra\-tion (e.g., School) of this template.
-\\
-novathesis.cls     & \File    & \accessForbiden &
-The main class file.
-\\
-NOVAthesisFiles   & \Folder  & \accessForbiden &
-Additional files for the \gls{novathesis} template.  This is where all the juice is so, unless you are a \TeX magician, don't mess up with the files and folders inside this folder.
-\\
-        \bottomrule
-        \end{xltabular}
-    % \end{longtblr}
-\egroup
+SL's privacy and resource-efficiency features make it suitable for various domains, including:
 
-\bgroup
-    \rowcolors{1}{}{GhostWhite}
-      \begin{xltabular}{\textwidth}{>{\ttfamily}l>{\itshape}lcX}
-        \caption{The configuration files (\texttt{Config} folder).}
-        \label{tab:configuration_files}\\
-        \toprule
-        \rowcolor{Gainsboro}%
-        Name & Type & Access & Contents \\
-        \midrule
-\texttt{0\_memoir.tex}      & \File  & \accessForbiden &
-Options specific for the \texttt{memoir} class. \emph{Don't touch this file unless you know what you are doing!}
-\\
-\texttt{1\_novathesis.tex}  & \File  & \accessAllowed &
-The main configuration file for the template, e.g., select the document type, the school, the used languages, etc.  
-\\
-\texttt{2\_biblatex.tex}      & \File  & \accessAllowed &
-Select how your citations and bibliographic references will be printed.  The default is numbers inside square brackets, e.g. \cite{novathesis-manual}, but you can change it to other formats, such as author-year, e.g., \citeauthor{novathesis-manual}~(\citeyear{novathesis-manual}).
-\\
-\texttt{3\_cover.tex}		& \File & \accessAllowed & 
-Configure cover contents (e.g., author's name, thesis/dissertation title, author, advisers, committee, etc)
-\\
-\texttt{4\_files.tex}		& \File & \accessAllowed & 
-Select which files shall be included in the document as chapters, appendices, annexes, etc…
-\\
-\texttt{5\_packages.tex}		& \File & \accessAllowed & 
-User's customization, such as loading additional packages and declare user defined commands.
-\\
-\texttt{6\_list\_of.tex}		& \File & \accessForbiden & 
-Configure the lists to be printed (table of contents, list of figures, list of tables, list of listings, etc). \emph{Don't touch this file unless you know what you are doing!}
-\\
-\texttt{9\_nova\_fct.tex}	& \File & \accessAllowed & 
-Configurations specific to NOVA FCT. \emph{Otherwise ignored.}
-\\
-\texttt{9\_ulisboa\_fmv.tex}	& \File & \accessAllowed & 
-Configurations specific to ULISBOA FMV. \emph{Otherwise ignored.}
-\\
-\texttt{9\_ulisboa\_ist.tex}	& \File & \accessAllowed & 
-Configurations specific to ULISBOA IST. \emph{Otherwise ignored.}
-\\
-\texttt{9\_uminho.tex}		& \File & \accessAllowed & 
-Configurations specific to UMINHO (all schools). \emph{Otherwise ignored.}
-\\
-        \bottomrule
-        \end{xltabular}
-    % \end{longtblr}
-\egroup
+\begin{enumerate}
+	\item \textbf{Healthcare:}
+	
+	In collaborative medical AI, hospitals can share insights from their data without sharing actual data. For instance, in diagnosing conditions from imaging data, only processed features are sent to the helper, allowing each hospital to maintain patient confidentiality. Parallel SL and SFL models enhance this capability by accelerating training across numerous institutions without centralizing data. Currently, image processing applications in hospital imaging services use this type of mechanism and are already able to detect anomalies and, for example, monitor the development of nodules, comparing old images with current ones. 
+	\item \textbf{Smart Cities and 6G Networks:}
+	
+	SL fits well with the distributed and resource-intensive requirements of future smart cities. SL can support real-time applications such as traffic monitoring and public safety by distributing the computational load across edge servers and mobile devices. In these dynamic configurations, SL’s ability to utilize multiple edge nodes in a distributed manner is particularly advantageous. 
+	\item \textbf{Autonomous Systems:}
+	 
+	Autonomous vehicles and drones require frequent updates to machine learning models for tasks like object detection. SL enables these devices to offload intensive computations to nearby servers, facilitating real-time updates without overloading on-board systems. ​
+
+\end{enumerate}
+
+
+\section{Delegation protocols}
+\label{sec:delegation_protocols}
+
+....
+
+\section{Applications of Split Learning in Emerging Fields}
+\label{sec:application_of_sl_in_emerging_fields}
+
+
+....
+
+\section{Helper membership management}
+\label{sec:helper_membership_management}
+
+....
+
+\section{Improvements on Spit Learning}
+\label{sec:improvements_on_sl}
+
+case studies
+what problems are not solved?
+limitations of existing solutions?
+discussion: compare our solution with the most relevant ones
+
+\section{FL apps/frameworks used to train models and classify sets}
+\label{sec:fl_apps_and_frameworks}
+
+Machine learning as a service (MLaaS) has increased in recent decades due to increased collection and processing of big data, availability of public APIs, new advanced machine learning (ML) methods, open source libraries, tools for ML analysis large-scale and cloud-based computing. These types of systems tended to be predominantly centralized, but with the emergence of Federated Learning due to concerns in terms of privacy, scalability and devices diversity, new services more dedicated to Federated Learning have started to appear, the so called Federated Learning as a Service. Below will be presented some of these services.
+
+\begin{enumerate}
+	\item \textbf{TensorFlow Federated (TFF):}
+	
+	...
+	\item \textbf{Flower:}
+	 
+	...
+	\item \textbf{PySyft by OpenMined:}
+	 
+	...
+	\item \textbf{OpenFL by Inte:}
+	 
+	...
+	\item \textbf{FLaaS by Telefónica:}
+	
+	...
+	
+\end{enumerate}
+
+
+\subsection{Discussion}
+\label{sec:discussion_fl_apps_frameworks}
+
+...
+
 
 
 % section folder_structure (end)
@@ -425,79 +434,6 @@ other/esep
   	  	{true,\newline false \defaultit}%
 	    {Shall all the pages (except cover) be numbered?}%
 		{}
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{tocintoc}%
-  	  	{true,\newline false \defaultit}%
-	    {Shall table of contents be listed in the table of contents?}%
-		{}
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{tocintoc}%
-  	  	{true,\newline false \defaultit}%
-	    {Shall a second cover page be forced?}%
-		{If the contents for the second page are not defined, the second cover will be a replica of the first cover.}
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{print/committee}%
-  	  	{true,\newline false}%
-	    {Shall the evaluation committee be printed?}%
-		{%
-		\defaultopt{print/committee=true if docstatus=final}
-		\defaultopt{print/committee=false otherwise}
-	    }
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{print/frontmatter}%
-  	  	{true, \defaultit\newline false}%
-	    {Shall the front matter be printed?}%
-		{Set to false to generate a PDF with only the cover and the book chapters.}
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{print/statement}%
-  	  	{true,\newline false \defaultit}%
-	    {Shall the honor/originality statement be printed?}%
-		{}
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{print/copyright}%
-  	  	{true, \defaultit\newline false}%
-	    {Shall the copyright message be printed?}%
-		{}
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{print/timestamp}%
-  	  	{true,\newline false}%
-	    {Shall a timestamp (with the PDF generation date/time) be printed in the cover?}%
-		{%
-		\defaultopt{print/timestamp=true if docstatus=working}
-		\defaultopt{print/timestamp=false otherwise}
-		}
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{style/url}%
-  	  	{default, \defaultit\newline same}%
-	    {Use the same (main) font in URLs?}%
-		{}
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{style/font}%
-    {arial, bookman, calibri, erewhon, kieranhealy, kpfonts, libertine, newpx, newsgott, scholax}%
-    {Which font set to use in the document?}%
-	{%
-    \begin{tabular}{@{}l@{ $\rightarrow$ }X@{}}
-		arial 		& Use `arial' font. Requires Xe\LaTeX\ or Lua\LaTeX.\\
-		bookman 	& Use `bookman' font.\\
-		calibri 	& Use `calibri' font. Requires Xe\LaTeX\ or Lua\LaTeX.\\
-		erewhon 	& Use `erewhon' font.\\
-		kieranhealy & Use `kieranhealy' font.\\
-		kpfonts 	& Use `palatino' font.\\
-		libertine 	& Use `libertine' font.\\
-		newpx 		& Use `palatino' font. \defaultit\\
-		newsgott 	& Use `newsgott' font. Requires Xe\LaTeX\ or Lua\LaTeX.\\
-		scholax 	& Use `scholax' font.\\
-    \end{tabular}
-    }
 %----------------------------------------------------------------------
 	    \midrule
 	  \classoption{style/chapter}%
