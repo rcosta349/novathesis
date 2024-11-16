@@ -110,9 +110,15 @@ Given that there is no central authority, it can be difficult to detect maliciou
 \subsection{Discussion}
 \label{sub:discussion}
 
-Considering these two approaches, we will focus on Decentralized Federated Learning (\gls{DFL}) to ensure that personal data stays on local devices and is not shared across the network. With \gls{DFL}, only model updates—such as parameters and gradients—are shared, not the actual data, which helps protect privacy more effectively than a centralized approach.
+Considering these two approaches, we will focus on Decentralized Federated Learning (\gls{DFL}) to ensure that personal data stays on local devices and is not shared across the network. With \gls{DFL}, only model updates such as parameters and gradients are shared, not the actual data, which helps protect privacy more effectively than a centralized approach.
 By choosing \gls{DFL}, our goal is to create a learning network that respects user privacy while remaining resilient and efficient, even as it grows.
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[height=3in]{cfl-vs-dfl}
+  \caption{CFL versus DFL}
+  \label{fig:dfl_vs_cfl}
+\end{figure}
 
 \section{Decentralized Federated Learning (DFL)}
 \label{sub:decentralized_federated_learning_2}
