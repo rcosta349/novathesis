@@ -50,6 +50,14 @@ Peer-to-peer (P2P) communication is a decentralized network model in which each 
   Nodes can connect and disconnect dynamically leading to an architecture that adapts as nodes join or leave the network. 
   These types of networks can scale up or down based on the number of peers. Increasing the number of nodes improves the network's capacity and resilience and decreasing them has limited impact, assuming enough nodes remain active to support data flow. Each node can offer resources, such as processing power or storage capacity, contributing to the overall capacity of the network, this makes \gls{P2P} an efficient approach for apps requiring vast amounts of shared data.
   
+  
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=2in]{client-server-vs-p2p}
+  \caption{Illustration of client-server and P2P architectures}
+  \label{fig:client-server-vs-p2p}
+\end{figure}
+  
 \subsubsection{Broadcast}
 \label{sec:Broadcast}
 
@@ -91,6 +99,15 @@ Babel facilitates the development process by allowing the developer to concentra
 
 In recent years, Federated Learning (FL) has emerged as a relevant approach for training collaborative models without the need to share sensitive data. Since its emergence, \gls{FL} (\gls{CFL}) has been the predominant methodology in the extant literature, wherein a central entity is responsible for the creation of a global model. However, a centralized approach has the disadvantage of increasing latency due to bottlenecks, heightening vulnerability to system failures, and giving rise to concerns regarding the trustworthiness of the entity responsible for creating the global model. Decentralized Federated Learning (DFL) emerged to address these concerns by promoting decentralized model aggregation and minimizing reliance on centralized architectures.
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=2in]{example_DFL_CFL_DL_LL}
+  \caption{Illustration of local learning, centralized learning, CFL, and DFL}
+  \label{fig:DFL_CFL_DL_LL}
+\end{figure}
+
+Image source: Decentralized Federated Learning: A Survey and Perspective
+
 \subsection{Federated Learning (CFL)}
 \label{sub:federated_learning}
 
@@ -119,6 +136,8 @@ By choosing \gls{DFL}, our goal is to create a learning network that respects us
   \caption{CFL versus DFL}
   \label{fig:dfl_vs_cfl}
 \end{figure}
+
+Image source: Decentralized Federated Learning: A Survey and Perspective
 
 \section{Decentralized Federated Learning (DFL)}
 \label{sub:decentralized_federated_learning_2}
@@ -192,6 +211,17 @@ SL’s architecture inherently supports several key benefits
 \label{sec:sl_architecture}
 
 In \gls{SL}, the neural network model is divided into sections, typically at two points called "cut layers." The client device handles the initial layers, which process the raw data. Then, only the activations (or "smashed data") from this initial processing are sent to the server, which takes over the heavier parts of the computation. This division reduces the memory and computational load on the client side and keeps sensitive raw data local, increasing privacy.
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=2in]{split-learning}
+  \caption{Illustration of split learning architecture}
+  \label{fig:DFL_CFL_DL_LL}
+\end{figure}
+
+
+Image source: Advancements of federated learning towards privacy preservation: from federated learning to split learning
 
 \subsection{Applications of Split Learning in Emerging Fields}
 \label{sec:application_of_sl_in_emerging_fields}
