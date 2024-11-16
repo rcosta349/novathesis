@@ -40,21 +40,20 @@ Membership protocols are vital for keeping decentralized swarm systems organized
   
   In larger swarms, keeping track of every single node isn’t practical. Decentralized Membership Protocols simplify this by letting each node manage enough information to stay connected without needing to know all nodes. For example, the HyParView protocol organizes nodes into two lists: an active view, which contains frequently updated links to a few critical nodes, and a passive view, a backup list of other nodes. The active view keeps each node actively connected, while the passive view acts as a fallback in case of node failure. This two-layered approach makes HyParView resilient and allows quick recovery if nodes unexpectedly drop out. The protocol is often used within frameworks like Babel, which supports secure and automatic connections. 
      
-  
 
 \end{enumerate}
 
-\section{P2P communication}
+\subsection{P2P communication}
 \label{sec:p2p_communication}
 
-Peer-to-peer (P2P) communication is a decentralized network model in which each peer or node has equal capabilities and responsibilities. P2P enables direct communication between nodes, without needing a central authority to mediate the interaction.
+Peer-to-peer (P2P) communication is a decentralized network model in which each peer or node has equal capabilities and responsibilities. \gls{P2P} enables direct communication between nodes, without needing a central authority to mediate the interaction.
   Nodes can connect and disconnect dynamically leading to an architecture that adapts as nodes join or leave the network. 
-  These types of networks can scale up or down based on the number of peers. Increasing the number of nodes improves the network's capacity and resilience and decreasing them has limited impact, assuming enough nodes remain active to support data flow. Each node can offer resources, such as processing power or storage capacity, contributing to the overall capacity of the network, this makes P2P an efficient approach for apps requiring vast amounts of shared data.
+  These types of networks can scale up or down based on the number of peers. Increasing the number of nodes improves the network's capacity and resilience and decreasing them has limited impact, assuming enough nodes remain active to support data flow. Each node can offer resources, such as processing power or storage capacity, contributing to the overall capacity of the network, this makes \gls{P2P} an efficient approach for apps requiring vast amounts of shared data.
   
 \subsubsection{Broadcast}
 \label{sec:Broadcast}
 
-The term broadcast refers to sending messages or data to all peers within a network, since P2P networks lack a centralized server, broadcasting relies on each node to propagate the message to others.
+The term broadcast refers to sending messages or data to all peers within a network, since \gls{P2P} networks lack a centralized server, broadcasting relies on each node to propagate the message to others.
 This method allows information to spread across the network efficiently, but it also presents challenges related to network congestion, duplication, and ensuring all peers receive the broadcasted message.
 
 Broadcasting can be implemented using various techniques:
@@ -63,7 +62,7 @@ Broadcasting can be implemented using various techniques:
 
   \item \textbf{Flooding:} In flooding, a peer sends the message to all its directly connected peers, who then forward it to their connected peers, and so on, until the message reaches every peer in the network. This method can lead to message duplication and network congestion, as each peer may receive multiple copies of the same message.
   \item \textbf{Gossip Protocols:} Each node randomly selects a few nodes to send the message, and those nodes, select randomly another subset of their connections, and so on. This method ensures that most or all nodes receive the message without overloading the network.
-  \item \textbf{Multicasting:} In structured P2P networks, multicasting can be more efficient than broadcasting. Instead of randomly sending messages to every node, it sends only to a specific group/subset of nodes who are most relevant to receive it. This is done by organizing nodes into groups or clusters and sending messages within those or between them.
+  \item \textbf{Multicasting:} In structured \gls{P2P} networks, multicasting can be more efficient than broadcasting. Instead of randomly sending messages to every node, it sends only to a specific group/subset of nodes who are most relevant to receive it. This is done by organizing nodes into groups or clusters and sending messages within those or between them.
 
 \end{enumerate}
 
@@ -78,7 +77,7 @@ Broadcasting can be implemented using various techniques:
 \subsection{Babel}
 \label{sub:babel}
 
-Babel is a framework that promotes event driven programming and it helps in the development of distributed protocols within a process that can execute any number of different protocols that communicate with each other, inside or outside the same process. The system is designed with a generic architecture that allows for the implementation of multiple distributed protocols and provides networking components that can capture different capabilities (e.g., P2P, Client/Server, ϕ-accrual Failure Detector). 
+Babel is a framework that promotes event driven programming and it helps in the development of distributed protocols within a process that can execute any number of different protocols that communicate with each other, inside or outside the same process. The system is designed with a generic architecture that allows for the implementation of multiple distributed protocols and provides networking components that can capture different capabilities (e.g., \gls{P2P}, Client/Server, ...). 
 Babel facilitates the development process by allowing the developer to concentrate on the fundamental aspects of the protocol, without having to address the inherent complications associated with low-level details.
 
 \subsubsection{Babel swarm}
@@ -90,32 +89,33 @@ Babel facilitates the development process by allowing the developer to concentra
 \section{Federated Learning (FL)}
 \label{sec:federated_laerning}
 
-In recent years, Federated Learning (FL) has emerged as a relevant approach for training collaborative models without the need to share sensitive data. Since its emergence, FL (CFL) has been the predominant methodology in the extant literature, wherein a central entity is responsible for the creation of a global model. However, a centralized approach has the disadvantage of increasing latency due to bottlenecks, heightening vulnerability to system failures, and giving rise to concerns regarding the trustworthiness of the entity responsible for creating the global model. Decentralized Federated Learning (DFL) emerged to address these concerns by promoting decentralized model aggregation and minimizing reliance on centralized architectures.
+In recent years, Federated Learning (FL) has emerged as a relevant approach for training collaborative models without the need to share sensitive data. Since its emergence, \gls{FL} (\gls{CFL}) has been the predominant methodology in the extant literature, wherein a central entity is responsible for the creation of a global model. However, a centralized approach has the disadvantage of increasing latency due to bottlenecks, heightening vulnerability to system failures, and giving rise to concerns regarding the trustworthiness of the entity responsible for creating the global model. Decentralized Federated Learning (DFL) emerged to address these concerns by promoting decentralized model aggregation and minimizing reliance on centralized architectures.
 
 \subsection{Federated Learning (CFL)}
 \label{sub:federated_learning}
 
 In CFL, a central server is tasked with aggregating updates from local models trained independently on each participant’s data. By exchanging model parameters only and not raw data, this configuration protects data privacy. However, the dependency on a single aggregation server introduces several limitations. Firstly, as the number of participating devices rises, the central server may become a bottleneck, resulting in increased latency and reduced scalability. Additionally, this architecture introduces a potential risk of single-point failure, where the central server’s failure can compromise the integrity of the entire training process. Security and trust are further concerns, as participants must trust the central entity with aggregating and distributing model updates without compromising data privacy.
 
-Due to its simple design and well-established protocols for safe and effective aggregation, CFL is still widely used despite all of these disadvantages. In order to minimize the possibility of data leakage, optimization efforts in CFL frequently concentrate on lowering communication costs between participants and the server, enhancing the aggregation algorithms, and guaranteeing strong data privacy techniques, such as differential privacy and secure aggregation methods.
+Due to its simple design and well-established protocols for safe and effective aggregation, \gls{CFL} is still widely used despite all of these disadvantages. In order to minimize the possibility of data leakage, optimization efforts in \gls{CFL} frequently concentrate on lowering communication costs between participants and the server, enhancing the aggregation algorithms, and guaranteeing strong data privacy techniques, such as differential privacy and secure aggregation methods.
 
 \subsection{Decentralized Federated Learning (DFL)}
-\label{sub:decentralized_federated_learning}
+\label{sub:decentralized_federated_learning_1}
 
-Decentralised Federated Learning (DFL) reduces dependency on a central server, which helps to overcome some of the main limitations of CFL. Since model parameters are shared and aggregated in a distributed manner rather than via a single central aggregator, DFL distributes computational responsibility more widely throughout the network.
-However, even without a central server, DFL still maintains a mechanism for updating a global model through decentralized aggregation strategies, often involving clusters or peer-to-peer structures where nodes collaborate to aggregate model parameters locally before updating the shared model.
+\gls{DFL} reduces dependency on a central server, which helps to overcome some of the main limitations of CFL. Since model parameters are shared and aggregated in a distributed manner rather than via a single central aggregator, DFL distributes computational responsibility more widely throughout the network.
+However, even without a central server, \gls{DFL} still maintains a mechanism for updating a global model through decentralized aggregation strategies, often involving clusters or peer-to-peer structures where nodes collaborate to aggregate model parameters locally before updating the shared model.
 This decentralized approach minimizes bottlenecks and reduces the risk of single points of failure, making DFL inherently more fault tolerant and scalable. Additionally, it distributes trust across the entire network rather than concentrating it in a single entity, which can alleviate some concerns about trustworthiness in centralized environments. However, because node interactions are asynchronous, DFL makes it more difficult to maintain consistency in model updates, which can result in stale updates and slower convergence. It also increases communication overhead, as nodes must frequently exchange model parameters with their peers to keep the overall model aligned.
-Given that there is no central authority, it can be difficult to detect malicious participants during DFL, making security and privacy issues difficult to resolve. For DFL systems to reduce the risk of malicious attacks or data exposure, secure aggregation, anomaly detection, and model update verification require strong, decentralized protocols. These mechanisms are essential to maintain the integrity of the model and the privacy of participants in the decentralized framework. 
+Given that there is no central authority, it can be difficult to detect malicious participants during DFL, making security and privacy issues difficult to resolve. For \gls{DFL} systems to reduce the risk of malicious attacks or data exposure, secure aggregation, anomaly detection, and model update verification require strong, decentralized protocols. These mechanisms are essential to maintain the integrity of the model and the privacy of participants in the decentralized framework. 
 
 
 \subsection{Discussion}
 \label{sub:discussion}
 
-Considering these two approaches, we will focus on Decentralized Federated Learning (DFL) to ensure that personal data stays on local devices and is not shared across the network. With DFL, only model updates—such as parameters and gradients—are shared, not the actual data, which helps protect privacy more effectively than a centralized approach.
-By choosing DFL, our goal is to create a learning network that respects user privacy while remaining resilient and efficient, even as it grows.
+Considering these two approaches, we will focus on Decentralized Federated Learning (\gls{DFL}) to ensure that personal data stays on local devices and is not shared across the network. With \gls{DFL}, only model updates—such as parameters and gradients—are shared, not the actual data, which helps protect privacy more effectively than a centralized approach.
+By choosing \gls{DFL}, our goal is to create a learning network that respects user privacy while remaining resilient and efficient, even as it grows.
+
 
 \section{Decentralized Federated Learning (DFL)}
-\label{sub:decentralized_federated_learning}
+\label{sub:decentralized_federated_learning_2}
 
 …. (real systems, concrete examples, models) ….
 
@@ -131,13 +131,13 @@ DFL framework development depends on various key factors, such as relevant appli
 	Connected and Automated Vehicles (CAVs) serve as a robust hardware infrastructure for DFL, where each node uses integrated batteries, various sensors, computing units, storage devices and much more. Vehicle-to-vehicle (V2V) communication is a framework that already supports several applications in networks of independent and connected vehicles, creating a basis for the application of Distributed Federated Learning (DFL) in Connected Autonomous Vehicles (CAVs). A V2V approach with FL allows vehicles to share updated knowledge with each other, which is crucial for the safe and efficient operation of vehicle networks. Studies such as that by Lu et al. demonstrate a practical application using Roadside Units (RSUs) act as intermediaries for routing vehicle identities and essential data, facilitating the direct exchange of information between vehicles when necessary. This system, in addition to protecting data privacy, helps reduce the risk of leaking information in vehicular cyber-physical environments (VCPS), enabling safe and efficient collaboration in real time.
 	\item \textbf{Mobile Services:}
 	
-	Mobile services based on IoT devices are an important application scenario for DFL, making use of the capabilities of smartphones, PCs, among others. These devices are equipped with several types of sensors and cameras that allow them to collect a big range of information sources. Unlike the relatively fixed connectivity of CAVs, mobile IoT devices offer more flexible systems and platforms to support a wide range of applications.
+	Mobile services based on IoT devices are an important application scenario for \gls{DFL}, making use of the capabilities of smartphones, PCs, among others. These devices are equipped with several types of sensors and cameras that allow them to collect a big range of information sources. Unlike the relatively fixed connectivity of CAVs, mobile IoT devices offer more flexible systems and platforms to support a wide range of applications.
 	\item \textbf{HealthCare:}
 	
-	Hospital centers and clinics are beginning to shift from CFL to DFL due to their diverse private data and computing resources. Warnat-Herresthal et al. presented the Swarm Learning, a DFL framework that deals with 4 heterogeneous disease use cases, including COVID-19, tuberculosis, leukemia and lung pathology. The framework incorporates blockchain smart contracts to provide additional security, and dynamically selects leaders to aggregate model parameters at each iteration.
+	Hospital centers and clinics are beginning to shift from \gls{CFL} to \gls{DFL} due to their diverse private data and computing resources. Warnat-Herresthal et al. presented the Swarm Learning, a \gls{DFL} framework that deals with 4 heterogeneous disease use cases, including COVID-19, tuberculosis, leukaemia and lung pathology. The framework incorporates blockchain smart contracts to provide additional security, and dynamically selects leaders to aggregate model parameters at each iteration.
 	\item \textbf{Satellites and Unmanned Aerial Vehicles:}
 	
-	UAVs and satellites in dynamic computing environments have vast amounts of sensitive data for remote sensing, target recognition, and military-related tasks under constraints of limited resources. This makes them suited to the benefits of DFL. Bandwidth is a valuable resource for mobile UAVs and satellites. A potential solution is that the application of a DFL framework based on broadcast gossip, customized to dynamic geographical locations, can significantly reduce bandwidth requirements and the consumption of communication resources. Additionally, due to its dynamic nature and highly variable data, DFL can also improve real-time responsiveness, adaptability and efficiency of task execution.
+	UAVs and satellites in dynamic computing environments have vast amounts of sensitive data for remote sensing, target recognition, and military-related tasks under constraints of limited resources. This makes them suited to the benefits of DFL. Bandwidth is a valuable resource for mobile UAVs and satellites. A potential solution is that the application of a \gls{DFL} framework based on broadcast gossip, customised to dynamic geographical locations, can significantly reduce bandwidth requirements and the consumption of communication resources. Additionally, due to its dynamic nature and highly variable data, \gls{DFL} can also improve real-time responsiveness, adaptability and efficiency of task execution.
 
 \end{enumerate}
 
@@ -150,22 +150,22 @@ Both CFL and DFL approaches, while innovative in preserving data privacy during 
 \begin{enumerate}
 	\item \textbf{Device and data heterogeneity:}
 	
-	Participating devices in FL differ significantly in terms of available memory, network connectivity, and processing power. Additionally, data from different devices is frequently non-IID (not independently and identically distributed), meaning that each device's data may exhibit distinct patterns. TAs local data from each node can differ from the population as a whole, this lack of uniformity makes it more difficult to create an accurate global model. In DFL, the added challenge of device diversity requires adaptive methods for synchronizing and aggregating model updates. ​
+	Participating devices in \gls{FL} differ significantly in terms of available memory, network connectivity, and processing power. Additionally, data from different devices is frequently non-IID (not independently and identically distributed), meaning that each device's data may exhibit distinct patterns. TAs local data from each node can differ from the population as a whole, this lack of uniformity makes it more difficult to create an accurate global model. In \gls{DFL}, the added challenge of device diversity requires adaptive methods for synchronising and aggregating model updates. ​
 	\item \textbf{Security and privacy:}
 	
 	Although FL naturally encourages data privacy by storing data locally, it is still susceptible to a number of attacks because client’s shared parameters and gradients may unintentionally reveal sensitive information. Techniques like model inversion (machine learning security threat that involves using the output of a model to infer some of its parameters or architecture) or membership inference attacks (allows an adversary to query a trained machine learning model to predict whether or not a particular example was contained in the model's training dataset) can exploit these shared updates to reconstruct aspects of the original data or identify if specific data points were involved in training. These vulnerabilities demonstrate the necessity of strong privacy-preserving techniques, like secure aggregation or differential privacy, to reduce data leakage and preserve model performance.
 	\item \textbf{Scalability and fault tolerance:} 
 	
-	While DFL enhances fault tolerance by eliminating single points of failure, scaling DFL networks remains challenging. As the network expands, the demands for communication and synchronization among nodes grow, which can strain system performance. To manage large numbers of participants efficiently, strategies like effective node clustering, load balancing, and advanced fault tolerance techniques become essential. These methods help distribute workloads more equally across the network and prevent communication bottlenecks, ensuring that model accuracy and system efficiency are maintained as the network scales
+	While DFL enhances fault tolerance by eliminating single points of failure, scaling DFL networks remains challenging. As the network expands, the demands for communication and synchronisation among nodes grow, which can strain system performance. To manage large numbers of participants efficiently, strategies like effective node clustering, load balancing, and advanced fault tolerance techniques become essential. These methods help distribute workloads more equally across the network and prevent communication bottlenecks, ensuring that model accuracy and system efficiency are maintained as the network scales
 
 \end{enumerate}
 
 \section{Split Learning}
 \label{sec:split_learning}
 
-Split learning (SL) has been proposed as a method for enabling resource-constrained devices to train multi-parameter neural networks (NNs) and participate in federated learning (FL). In essence, SL divides the NN model into sections, enabling clients (devices) to transfer the largest section as a processing task to a computationally robust helper. In SL, it is possible to have multiple helpers that can process model parts of one or more clients, resulting in a notable reduction in the maximum training time across all clients.
+Split learning (SL) has been proposed as a method for enabling resource-constrained devices to train multi-parameter neural networks (NNs) and participate in \gls{FL}. In essence, \gls{SL} divides the \gls{NN} model into sections, enabling clients (devices) to transfer the largest section as a processing task to a computationally robust helper. In SL, it is possible to have multiple helpers that can process model parts of one or more clients, resulting in a notable reduction in the maximum training time across all clients.
 
-In the field of collaborative machine learning, SL provides distinct advantages over traditional federated learning (FL) by addressing the resource constraints and privacy challenges of small devices such as IoT sensors and mobile devices. SL allows these devices to participate in training complex models by transferring only a portion of the model to powerful helpers, which perform the more computationally intensive tasks. This model split reduces both the memory footprint and computational demand on client devices, which is essential for integrating learning frameworks in environments with limited resources.
+In the field of collaborative machine learning, \gls{SL} provides distinct advantages over traditional \gls{FL} by addressing the resource constraints and privacy challenges of small devices such as IoT sensors and mobile devices. SL allows these devices to participate in training complex models by transferring only a portion of the model to powerful helpers, which perform the more computationally intensive tasks. This model split reduces both the memory footprint and computational demand on client devices, which is essential for integrating learning frameworks in environments with limited resources.
 
 \subsection{Advantages of Split Learning}
 \label{sec:advantages_of_sl}
@@ -175,7 +175,7 @@ SL’s architecture inherently supports several key benefits
 \begin{enumerate}
 	\item \textbf{Resource Efficiency:} 
 	
-	By offloading the heaviest computations to a helper, SL allows smaller devices to contribute to model training without exhausting their limited resources. This makes SL appropriate for IoT environments and low-processing-power smart devices.
+	By offloading the heaviest computations to a helper, \gls{SL} allows smaller devices to contribute to model training without exhausting their limited resources. This makes SL appropriate for IoT environments and low-processing-power smart devices.
 	
 	\item \textbf{Device Heterogeneity:} 
 	
@@ -185,7 +185,7 @@ SL’s architecture inherently supports several key benefits
 \subsection{SL Architecture}
 \label{sec:sl_architecture}
 
-In SL, the neural network model is divided into sections, typically at two points called "cut layers." The client device handles the initial layers, which process the raw data. Then, only the activations (or "smashed data") from this initial processing are sent to the server, which takes over the heavier parts of the computation. This division reduces the memory and computational load on the client side and keeps sensitive raw data local, increasing privacy.
+In \gls{SL}, the neural network model is divided into sections, typically at two points called "cut layers." The client device handles the initial layers, which process the raw data. Then, only the activations (or "smashed data") from this initial processing are sent to the server, which takes over the heavier parts of the computation. This division reduces the memory and computational load on the client side and keeps sensitive raw data local, increasing privacy.
 
 \subsection{Applications of Split Learning in Emerging Fields}
 \label{sec:application_of_sl_in_emerging_fields}
@@ -196,45 +196,129 @@ SL's privacy and resource-efficiency features make it suitable for various domai
 \begin{enumerate}
 	\item \textbf{Healthcare:}
 	
-	In collaborative medical AI, hospitals can share insights from their data without sharing actual data. For instance, in diagnosing conditions from imaging data, only processed features are sent to the helper, allowing each hospital to maintain patient confidentiality. Parallel SL and SFL models enhance this capability by accelerating training across numerous institutions without centralizing data. Currently, image processing applications in hospital imaging services use this type of mechanism and are already able to detect anomalies and, for example, monitor the development of nodules, comparing old images with current ones. 
+	In collaborative medical AI, hospitals can share insights from their data without sharing actual data. For instance, in diagnosing conditions from imaging data, only processed features are sent to the helper, allowing each hospital to maintain patient confidentiality. \gls{SL} enhance this capability by accelerating training across numerous institutions without centralizing data. Currently, image processing applications in hospital imaging services use this type of mechanism and are already able to detect anomalies and, for example, monitor the development of nodules, comparing old images with current ones. 
 	\item \textbf{Smart Cities and 6G Networks:}
 	
-	SL fits well with the distributed and resource-intensive requirements of future smart cities. SL can support real-time applications such as traffic monitoring and public safety by distributing the computational load across edge servers and mobile devices. In these dynamic configurations, SL’s ability to utilize multiple edge nodes in a distributed manner is particularly advantageous. 
+	SL fits well with the distributed and resource-intensive requirements of future smart cities. SL can support real-time applications such as traffic monitoring and public safety by distributing the computational load across edge servers and mobile devices. In these dynamic configurations, \gls{SL}’s ability to utilize multiple edge nodes in a distributed manner is particularly advantageous. 
 	\item \textbf{Autonomous Systems:}
 	 
-	Autonomous vehicles and drones require frequent updates to machine learning models for tasks like object detection. SL enables these devices to offload intensive computations to nearby servers, facilitating real-time updates without overloading on-board systems. ​
+	Autonomous vehicles and drones require frequent updates to machine learning models for tasks like object detection. \gls{SL} enables these devices to offload intensive computations to nearby servers, facilitating real-time updates without overloading on-board systems. ​
 
 \end{enumerate}
 
 
-\section{Delegation protocols}
+\section{Delegation protocols (TBD)}
 \label{sec:delegation_protocols}
 
+
+\begin{enumerate}
+	\item \textbf{Request Helper:} \\ When a node detects insufficient processing power for training tasks, it sends a helper request to the delegation service.
+	\item \textbf{Helper Assignment:} \\ The delegation service identifies an optimal helper from the membership list and initiates the Babel-based communication protocol to connect the original node with the helper.
+	\item \textbf{Session Establishment:} \\ Babel's channel abstraction facilitates creating a communication channel, through which the delegating node and the helper node share training layer information.
+
+\end{enumerate}
+
 ....
 
-\section{Applications of Split Learning in Emerging Fields}
-\label{sec:application_of_sl_in_emerging_fields}
 
-
-....
-
-\section{Helper membership management}
+\section{Helper membership management (TBD)}
 \label{sec:helper_membership_management}
 
+\begin{enumerate}
+	\item \textbf{Telemetry Monitoring:} \\ Each node sends telemetry data periodically to the delegation service, which includes CPU, GPU usage, RAM, and battery status.
+
+	\item \textbf{Candidate Selection: } \\ Nodes with lower CPU/GPU usage, higher RAM available, and better battery status are prioritized as potential helpers.
+	
+	\item \textbf{Membership Protocol Adaptation:} \\ Using a gossip or HyParView, can help in maintaining an updated list of potential helper nodes. Babel can support this through its event-driven, message-passing structure for efficient data dissemination​
+
+
+\end{enumerate}
+
 ....
 
-\section{Improvements on Spit Learning}
+\section{Improvements on Split Learning}
 \label{sec:improvements_on_sl}
 
-case studies
-what problems are not solved?
-limitations of existing solutions?
-discussion: compare our solution with the most relevant ones
+\gls{SL} as already mentioned is a collaborative machine learning approach that partitions a model between clients and a central server, enabling joint training without sharing raw data. This method offers advantages in privacy preservation and resource efficiency. However, it also presents certain challenges and limitations.
+	\\
+	Recent advances aim to improve \gls{SL} by addressing the inherent limitations of the approach.
+
+\begin{enumerate}
+
+	\item \textbf{Multi-Level Split Federated Learning (\gls{SFL}):} 
+	
+	This approach combines the benefits of \gls{SL} and \gls{FL} to improve scalability and reduce communication delays. By introducing a multi-level aggregation architecture, it addresses system and statistical heterogeneity in large-scale AIoT systems with non-IID data distributions.
+	
+	\item \textbf{SplitFed Learning without Client-Side Synchronization:}
+	 
+	Traditional SplitFed Learning requires synchronization among clients, leading to communication and computation overhead. An alternative approach removes this requirement, resulting in a "Multi-head Split Learning" architecture. Empirical studies indicate that this method achieves performance comparable to traditional SplitFed Learning while reducing client-side overhead. 
+
+\end{enumerate}
+
+\subsection{Unresolved Problems}
+\label{sec:sl_unresolved_problems}
+
+Several studies have identified challenges in SL that remain unresolved, such as Privacy Leakage which despite \gls{SL}'s design to protect data privacy, research has demonstrated the existence of potential vulnerabilities that could allow adversaries to reconstruct the original data from gradients or shared activations. This suggests that \gls{SL} may not provide comprehensive protection for sensitive information.
+
+\subsection{Limitations of Existing Solutions}
+\label{sec:limitations_on_existing_solutions}
+
+While enhancements have been proposed, certain limitations remain:
+
+\begin{enumerate}
+	\item \textbf{Communication Overhead:}
+	
+	Some solutions, such as traditional \gls{SFL}, introduce considerable communication overhead due to the necessity for client-side synchronization. This can prove to be a significant burden for devices with limited resources. 
+	
+	\item \textbf{Scalability Issues:}
+	
+	Despite the fact that multi-level \gls{SFL} is designed to enhance scalability, it may still face challenges in the context of extremely large and heterogeneous networks, particularly when confronted with non-IID data distributions.
+	
+	These factors described below, once combined, can make efficient scaling difficult in some environments:
+	
+	\subitem \textbf{Diverse Data Patterns:}
+	
+	 Non-IID data means each client has significantly different data, making it harder to train a unified model that performs well for everyone.
+	 
+	 \subitem \textbf{Resource Constraints:}
+	 
+	 Large networks often involve devices with varying computational power, causing delays and inefficiencies during training.
+	 
+	 \subitem \textbf{Communication Bottlenecks:}
+	 
+	 As the network grows, the amount of data exchanged increases, leading to delays and higher costs in synchronizing updates across devices.
+
+\end{enumerate}
+
+
+\subsection{Discussion}
+\label{sec:sl_improvements_discussion}
+
+Our proposed solution addresses the aforementioned limitations by staying with "normal" \gls{SL} rather than adopting \gls{SFL}, due to its significantly simpler development and operational advantages:
+
+\begin{enumerate}
+	\item \textbf{Enhances Privacy: }
+	
+	By keeping the focus on standard Split Learning, our approach reduces the complexity of client-side synchronization, minimizing the risk of additional data leakage through intermediate synchronization steps required in SplitFed Learning.
+	
+	\item \textbf{Reduces Communication Overhead:}
+	
+	Split Learning inherently involves fewer data exchanges compared to SplitFed Learning, as it avoids the frequent client-to-client synchronization that \gls{SFL} requires. This results in a more efficient and streamlined communication process.
+
+	\item \textbf{Simplifies Development:} 
+	
+	The development of SplitFed Learning is notably more complex due to the need to coordinate and synchronize updates across multiple clients. By using SL, our solution maintains a straightforward and more manageable architecture.
+	
+\end{enumerate}
+
+By focusing on standard \gls{SL}, our solution prioritizes simplicity and efficiency while addressing key challenges in collaborative machine learning, making it a robust and practical choice for real-world applications.
+
+
 
 \section{FL apps/frameworks used to train models and classify sets}
 \label{sec:fl_apps_and_frameworks}
 
-Machine learning as a service (MLaaS) has increased in recent decades due to increased collection and processing of big data, availability of public APIs, new advanced machine learning (ML) methods, open source libraries, tools for ML analysis large-scale and cloud-based computing. These types of systems tended to be predominantly centralized, but with the emergence of Federated Learning due to concerns in terms of privacy, scalability and devices diversity, new services more dedicated to Federated Learning have started to appear, the so called Federated Learning as a Service. Below will be presented some of these services.
+Machine learning as a service (MLaaS) has increased in recent decades due to increased collection and processing of big data, availability of public APIs, new advanced machine learning (\gls{ML}) methods, open source libraries, tools for \gls{ML} analysis large-scale and cloud-based computing. These types of systems tended to be predominantly centralized, but with the emergence of Federated Learning due to concerns in terms of privacy, scalability and devices diversity, new services more dedicated to Federated Learning have started to appear, the so called Federated Learning as a Service. Below will be presented some of these services.
 
 \begin{enumerate}
 	\item \textbf{TensorFlow Federated (TFF):}
@@ -259,574 +343,9 @@ Machine learning as a service (MLaaS) has increased in recent decades due to inc
 \subsection{Discussion}
 \label{sec:discussion_fl_apps_frameworks}
 
-...
+....
 
-
-
-% section folder_structure (end)
-
-% ===================
-% = Package options =
-% ===================
-\section{Customizing the \novathesistxt\ template}
-\label{sec:package_options}
-
-The \novathesistxt\ template can be customized by editing the files in the \texttt{Config} folder.
-
-\newcommand{\classoption}[4]{\textbf{#1=OPT}\newline\emph{\small#2}&\textbf{#3}\newline{\small#4}\\}
-\newcommand{\defaultopt}[1]{\mbox{$\Rightarrow$~\emph{Default: \texttt{#1}}}\newline}
-\newcommand{\defaultit}[1][default]{($\Leftarrow$~\emph{#1})}
-
-
-\subsection{Options in \texttt{1\_novathesis.tex}} % (fold)
-\label{sub:_texttt_1__novathesis_tex}
-
-\subsubsection{Most Relevant Options (\texttt{1\_novathesis.tex})} % (fold)
-\label{ssub:most_relevant_options}
-
-\bgroup
-\begin{xltabular}{\linewidth}{>{\hsize=.4\hsize\raggedright\arraybackslash}X>{\hsize=.6\hsize}X}
-  \toprule
-%----------------------------------------------------------------------
-  \classoption{doctype}%
-    {phd, phdprop, phdplan, msc, mscplan, bsc, plain}%
-    {The type of the document.}%
-	{%
-    \begin{tabular}{@{}r@{ $\rightarrow$ }l@{}}
-        phd & PhD thesis \defaultit.\\
-    phdprop & PhD thesis proposal (for FCT-NOVA).\\
-    phdplan & PhD thesis plan.\\
-        msc & MSc thesis.\\
-    mscplan & MSc thesis plan.\\
-        bsc & BSc report.\\
-      plain & Other report.\\
-    \end{tabular}
-    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{school}%
-  	{nova/fct, nova/fcsh, nova/ims, nova/ims/mcsig, nova/ims/mgt, nova/ensp, nova/itqb/green, nova/itqb/gray,
-ulisboa/ist, ulisboa/fc, ulisboa/fmv,
-uminho/eaad, uminho/ec, uminho/ed, uminho/eeg, uminho/eeng, uminho/elach, uminho/emed, uminho/epsi, uminho/ese, uminho/i3bs, uminho/ics, uminho/ie, 
-iscteiul/eta, 
-ips/ests, 
-ipl/isel, ipl/isel/meb,
-ulht/deisi, ulht/mge, 
-other/esep
-	}%
-    {Selection of the university and of the school (and degree variant).}%
-    {\defaultopt{school=nova/fct} 
-     This option changes the typesetting of the de document to some specific School formating and layout, like covers, margins, fonts, paragraph spacing and indentation, etc.}
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{docstatus}%
-    {draft, provisional, final}%
-    {The current status of the document.}%
-	{%
-    \begin{tabular}{@{}r@{ $\rightarrow$ }X@{}}
-         working      & Working version \defaultit.\\
-         provisional  & Version for submission.\\
-         final        & Final version.\\
-    \end{tabular}
-    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{lang}%
-    {en, pt, de, es, fr, gr, it}%
-    {The main language for the document.}%
-	{%
-    \begin{tabular}{@{}l@{ $\rightarrow$ }X@{}}
-         en & Enlgish \defaultit.\\
-         pt & Portuguese.\\
-         de & German.\\
-         es & Spanish.\\
-         fr & French.\\
-         gr & Greek.\\
-         it & Italian.\\
-    \end{tabular}
-    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{media}%
-    {screen, paper}%
-    {The target media for the PDF.}%
-	{%
-    \begin{tabular}{@{}l@{ $\rightarrow$ }X@{}}
-         screen & No empty/white pages \defaultit.\\
-         paper  & Empty/white pages are added when necessary.\\
-    \end{tabular}
-    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{print/webography}%
-    {User defined title}%
-    {Generate a separate bibliography for \emph{@online} references.}%
-	{%
-		\defaultopt{print/webography=undefined} 
-		If undefined, the \emph{@online} references are list in the main bibliography.  If defined, the \emph{@online} references will be printed in a separate bibliography titled as given in the option.
-    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{color/links}%
-    {Color name}%
-    {The color for the hyperlinks (URLs, cross references, citations).}%
-	{%
-		\defaultopt{color/links=DarkBlue} 
-		The valid color names as listed in “\texttt{xcolor}” manual, the “\texttt{svgname}” color set.
-    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{color/gls}%
-    {Color name}%
-    {The color for the glossary managed hyperlinks (glossary, symbols, etc).}%
-	{%
-		\defaultopt{color/gls=Black} 
-		The valid color names as listed in “\texttt{xcolor}” manual, the “\texttt{svgname}” color set.
-    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{print/index}%
-    {true,\newline false \defaultit}%
-    {Print the (words) index at the end of the document.}%
-	{%
-		Print the index (in Portuguese \emph{Índice Remissivo}).
-    }
-%----------------------------------------------------------------------
-    \bottomrule
-\end{xltabular}
-\egroup
-
-
-\subsubsection{Less Relevant Options (\texttt{1\_novathesis.tex})} % (fold)
-\label{ssub:less_relevant_options_1}
-
-
-\bgroup
-\begin{xltabular}{\linewidth}{>{\hsize=.4\hsize\raggedright\arraybackslash}X>{\hsize=.6\hsize}X}
-  \toprule
-%----------------------------------------------------------------------
-	  \classoption{abstractorder}%
-	    {$L_0 = \{L_1, L_2, …, L_n\}$}%
-	    {Forces the abstracts languages and order for documents in language $L_0$.}%
-		{%
-		\defaultopt{abstractorder=\{en=\{en,pt\}\} for english}
-		\defaultopt{abstractorder=\{L=\{L,en\}\} for lang L}
-		$L_i$ is a two-letters language code from the set of valid language codes, following ISO 3166-1 (alfa-2).
-	    }
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{lang/extra}%
-	    {$\{L_1, L_2, …, L_n\}$}%
-	    {List of additional languages are used in the document besides the main laguage and those used in the abstracts (above).}%
-		{%
-		\defaultopt{lang/extra=\{\}}
-		$L_i$ is a two-letters language code from the set of valid language codes, following ISO 3166-1 (alfa-2).
-	    }
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{gnumberlist}%
-  	  	{true, \defaultit\newline false}%
-	    {Shall the glossary entries list the page numbers where those entries are used?  (Like a reverse index!)}%
-		{}
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{numberallpages}%
-  	  	{true,\newline false \defaultit}%
-	    {Shall all the pages (except cover) be numbered?}%
-		{}
-%----------------------------------------------------------------------
-	    \midrule
-	  \classoption{style/chapter}%
-	    {\emph{See list on the side!}}%
-	    {Which chapter style to use in the document?}%
-	{%
-	Besides the standard \href{https://tug.ctan.org/info/MemoirChapStyles/MemoirChapStyles.pdf}{\texttt{memoir} chapter styles} (\texttt{default}, \texttt{section}, \texttt{article}, \texttt{reparticle}, \texttt{hangnum}, \texttt{companion}, \texttt{demo}, \texttt{bianchi}, \texttt{bringhurst}, \texttt{brotherton}, \texttt{chappell}, \texttt{culver}, \texttt{dash}, \texttt{demodemoell}, \texttt{ger}, \texttt{lyhne}, \texttt{madsen}, \texttt{pedersen}, \texttt{southall}, \texttt{thatcher}, \texttt{veelo}, \texttt{verville}, \texttt{crosshead}, \texttt{dowding}, \texttt{komalike}, \texttt{ntglike}, \texttt{tandh}, \texttt{wilsondob}), the customized list of chapter styles below is also available.
-	    \begin{tabular}{@{}l@{ $\rightarrow$ }X@{}}
-		bar 		& Use `bar' chapter style. \defaultit\\
-		bar-compact	& Use `bar-compact' chapter style.\\
-		bluebox 	& Use `bluebox' chapter style.\\
-		compact 	& Use `compact' chapter style.\\
-		elegant 	& Use `elegant' chapter style.\\
-		fmv 		& Use `fmv' chapter style.\\
-		hansen 		& Use `hansen' chapter style.\\
-		ist 		& Use `ist' chapter style.\\
-		ist2 		& Use `ist2' chapter style.\\
-		pedersen 	& Use `pedersen' chapter style.\\
-	    \end{tabular}
-	    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{lang/cover}%
-    {en, pt, de, es, fr, gr, it}%
-    {The main language for the cover.}%
-	{%
-	\defaultopt{The same as the main language.}
-    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{lang/copyright}%
-    {en, pt, de, es, fr, gr, it}%
-    {The main language for the copyright message.}%
-	{%
-	\defaultopt{The same as the main language.}
-    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{spine/layout}%
-    {no, full, trim}%
-    {Print the “book spine” at the end of the document?}%
-	{%
-		\defaultopt{`trim' if docstatus=final}
-		\defaultopt{`no' otherwise}
-	    \begin{tabular}{@{}l@{ $\rightarrow$ }X@{}}
-		no 		& do not print the book spine.\\
-		full	& print the book spine in a full page.\\
-		trim 	& print and trim the page to the width of the book spine.\\
-	    \end{tabular}
-    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{spine/width}%
-    {\emph{\LaTeX\ dimension}}%
-    {Force the width of the “book spine”.}%
-	{%
-		\defaultopt{The “natural width”.}
-		 The defailt width for the book spine will be the width of the number of pages of the document if printed in standard paper ($80g/m^2$).
-    }
-%----------------------------------------------------------------------
-    \midrule
-  \classoption{debug}%
-    {cover, spine}%
-    {Activate debug mode for cover and/or book spine.}%
-	{%
-		\defaultopt{debug=\{\}}
-    }
-% %----------------------------------------------------------------------
-	  %   \midrule
-	  % \classoption{linkscolor}%
-	  %   {A color of your choice.}%
-	  %   {The color for all the hyperlinks in the PDF file.}%
-	  %   {\defaultopt{darkblue}
-	  %    The “\texttt{media=paper}” option (see below) will override this option to “\texttt{black}”}
-% %----------------------------------------------------------------------
-%     \midrule
-%   \classoption{media}%
-%     {screen, paper}%
-%     {The target of the PDF.}%
-%     {\defaultopt{screen}
-%      By default, PDF for screen has colored links and identical left and right margins, while PDF for paper (to print) has black links and may have different left and right margins.}
-%     \midrule
-% %----------------------------------------------------------------------
-%   \classoption{print/index}%
-%     {true, false}%
-%     {Produce the document index.}%
-%     {\defaultopt{false}
-%      The index (\emph{índice remissivo}) is a keyword index typeset an the end of the document. WARNING: Should not be confused with the table of contents.}
-%     \midrule
-%
-%
-%
-%
-% %----------------------------------------------------------------------
-%   \classoption{fontstyle}%
-%     {bookman, charter, fourier, kpfonts(*), mathpazo1, mathpazo2, newcent}%
-%     {The font set to be used in the document.}{Please note that a font set include definitions for the main text, headings, maths, etc.}
-%     \midrule
-% %----------------------------------------------------------------------
-%   \classoption{chapstyle}%
-%     {bianchi, bluebox, brotherton, dash, default, elegant(*), ell, ger, hansen, ist, jenor, lyhne, madsen, pedersen, veelo, vz14, vz34, vz43}%
-%     {The chapter style}{The look of the chapter beginning.}
-%     \midrule
-% %----------------------------------------------------------------------
-%   \classoption{converlang}%
-%     {en, pt(*)}%
-%     {The language to be used when typesetting the cover page.}{}
-%     \midrule
-% %----------------------------------------------------------------------
-%   \classoption{otherlistsat}%
-%     {front(*), back}%
-%     {Where to put the other lists besides the table of contents.}{The default is (\texttt{front}) before the main text.  But some scientific areas prefer them at the end of the document (\texttt{back}), just before the Appendixes.}
-%     \midrule
-% %----------------------------------------------------------------------
-%   \classoption{statement}%
-%     {true, false(*)}%
-%     {Include or don't include the contents of the “\texttt{statement}” file.}{The default is for this file to be ignored (if it exists).}
-%     \midrule
-% %----------------------------------------------------------------------
-%   \classoption{spine}%
-%     {true, false(*)}%
-%     {Generate the book spine and the last page in the PDF.}{}
-%     \midrule
-% %----------------------------------------------------------------------
-%   \classoption{biblatex}%
-%     {OPT=\{list of options for \texttt{biblatex}\}}%
-%     {Customize \texttt{biblatex}, the bibliography management system used in this class.}{Probably you will want to change the value of the \texttt{biblatex} “\texttt{style}” option. For other customizations of \texttt{biblatex} check its manual.}
-%     \midrule
-% %----------------------------------------------------------------------
-%   \classoption{memoir}%
-%     {OPT=\{list of options for \texttt{memoir}\}}%
-%     {Customize the base class \texttt{memoir}.}{The \texttt{memoir} manual should be the first document to be consulted when looking for “\textbf{how can I do this?}” You may what to change the base font size from 11pt to a smaller (10pt) or larger (12pt) size.  Also, remember to change the “\texttt{draft}” to final when your document is finished.}
-%     \midrule
-    \bottomrule
-\end{xltabular}
-\egroup
-% \end{ctabular}
-
-
-\section{How to Write Using \LaTeX}
-\label{sec:how_to_write_using_latex}
-
-Please have a look at Chapter~\ref{cha:a_short_latex_tutorial_with_examples}, where you may find many examples of \LaTeX constructs, such as Sectioning, inserting Figures and Tables, writing Equations, Theorems and algorithms, exhibit code listings, etc.
-
-% section how_to_write_using_latex (end)
-
-
-
-\section{Example glossary, acronyms, and symbols}
-%
-% \todo[inline]{A a note in a line by itself.}
-%
-This is the first occurrence of an abbreviation: \gls{abbrev}. And now the second occurrence of the same abbreviation: \gls{abbrev}. And a new acronym with capital letter: \Gls{xpt} and reused \gls{xpt}.  Let's also use a few other acronyms such as \gls{aaa}, \gls{aab}, \gls{aba}, \gls{bbb} and \gls{xpt}.
-In geometry, the area enclosed by a circle of radius \gls{r} is $\pi r^2$. Here the Greek letter \gls{pi} is equal to the ratio of the circumference of any circle to its diameter.
-Lets add ``\gls{computer}'' to the glossary! Be carefull with mathematical symbols in acronyms, please see the definition of \gls{mu}.
-
-% Reference to Potassium \gls{chem:potassio} and Sodium \gls{chem:sodio} as well.
-
-%
-% Please note that
-% \begin{center}
-%   \textbf{\large this package and template are not official for FCT/NOVA}.
-% \end{center}
-
-
-
-% \printbibliography[heading=subbibliography, segment=\therefsegment, title={\bibname\ for chapter~\thechapter}]
-
-
-\endinput
-
-%!TEX root = ../template.tex
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% chapter2.tex
-%% NOVA thesis document file
-%%
-%% Chapter with the template manual
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\typeout{NT FILE chapter2.tex}%
-
-\chapter{NOVAthesis Template \emph{User's Manual}}
-\label{cha:users_manual}
-
-\glsresetall
-
-\begin{center}
-  \fbox{\LARGE
-    This manual is outdated and must be revised!}
-\end{center}
-
-Referência ao Potássio é \gls{chem:potassio} e Sódio também \gls{chem:sodio}.
-
-\section{Introduction}
-\label{sec:introduction}
-
-This chapter describes how to use the \gls{novathesis}\ Template and the \gls{novathesisclass} file.  I will assume you have a working installation of \LaTeX, wither local (in your own computer) or remote (in Overleaf), and that it compiled successfully the default configuration (PhD for \gls{FCT}).
-
-
-\section{Folder Structure}
-\label{sec:folder_structure}
-
-The \gls{novathesis} template is organized into many files and folders. At the main level it includes the following files and folders:
-
-\noindent
-\bgroup
-\rowcolors{1}{GhostWhite}{}
-\begin{xltabular}{\linewidth}{>{\ttfamily}l>{\itshape}l>{\upshape}X}
-novathesis.cls     & file    &
-The main class file. It will include additional files from \texttt{NOVAthesisFiles} folder and its sub-folders.
-\\
-template.tex      & file    &
-The main template file. You need to \emph{compile} this file with one of pdf\LaTeX, \XeLaTeX, or \LuaLaTeX\ to obtain the \texttt{template.pdf} file.
-\\
-bibliography.bib  & file    &
-An example of a bibliography file. You may have has many as you want. \\
-template.pdf      & file    &
-A possible result of applying pdf\LaTeX\ to the \texttt{template.tex} file. The template supports multiple types of documents (e.g., MSc dissertation, PhD thesis, …) and multiple Schools (e.g., FCT-NOVA, FCSH-NOVA, IST-UL, FC-UL, …) and each will produce different results.
-\\
-Chapters          & folder  & Examples of thesis chapters. Replace them with your own chapters.
-\\
-Examples          & folder  & Some more examples of the use of the template for different document types and Schools.
-\\
-Scripts           & folder  & Some (possibly useful) scripts for Unix-based systems (Linux, Mac OSx). If you are a windows user, ignore this folder (you may safely delete it if you want).
-\\
-NOVAthesisFiles   & folder  &
-Additional files for the \gls{novathesisclass}\ file.  Unless you know what you are doing, avoid messing up with the files and folders inside this folder (except for deleting the unused Schools, see below).
-\\
-\end{xltabular}
-\egroup
-
-The \texttt{NOVAthesisFiles} folder contains additional files and folders that complement the main \gls{novathesisclass}\ file.  These are:
-
-\noindent
-\bgroup
-\rowcolors{1}{GhostWhite}{}
-\begin{tabularx}{\linewidth}{>{\ttfamily}l>{\itshape}l>{\upshape}X}
-README.txt      & file    &
-A file that should be read!  :)
-\\
-fix-babel.tex   & file    &
-Simple fixes to the \texttt{babel} package.
-\\
-lang-text.ldf   & file    &
-Translations of important strings used in the template.  Currently fully supported are Portuguese and English, but French is on the way.  If you add translations for your own language, please be so kind and send them to me. Thank you!
-\\
-options.tex     & file    &
-Processing of \gls{novathesisclass}\ options.  \emph{Don't mess with this!}
-\\
-packages.tex    & file    &
-Additional packages to be loaded into the \gls{novathesis}\ template. \emph{You should not mess with this!}
-\\
-spine.tex       & file    &
-This file is loaded only if the option \texttt{spine=full} or \texttt{spine=trim}, and includes the typesetting of the book spine.
-\\
-ChapStyles      & folder  &
-Contains a lot of files, one for each chapter style.  If you really know what you are doing, you may add your own chapter style here.
-\\
-FontStyles      & folder  &
-Contains a few files, one for each set of fonts (main text font, chapter font, section font, subsection font, etc).  If you really know what you are doing, you may add your own set here.
-\\
-Schools         & folder  &
-Configuration files for each school.  This folder is organized into subfolders, one for each university.  \emph{You may safely delete all the subfolders except the one for your University.}  Then open the subfolder of your University and \emph{you may safely delete all the subfolders except the one for your School/Faculty}.
-\\
-\end{tabularx}
-\egroup
-
-As stated above, the \texttt{Schools} folder contains per-university folders and per-school (faculty) subfolders.  Currently these are the available folders:
-
-\noindent
-\bgroup
-\rowcolors{1}{GhostWhite}{}
-\begin{tabularx}{\linewidth}{>{\ttfamily}r@{~/~}>{\ttfamily}l>{\itshape}l>{\upshape}X}
-ul     & ist    & folder  &
-The folder for the \href{http://www.tecnico.ulisboa.pt}{\emph{Instituto Superior Técnico}} of the \emph{University of Lisbon}.
-\\
-nova    & fcsh   & folder  &
-The folder for the \href{http:www.fcsh.unl.pt}{\emph{Faculty of Human and Social Sciences}}  of the \emph{NOVA University of Lisbon}.
-\\
-nova    & fct    & folder  &
-The folder for the \href{http:www.fct.unl.pt}{\emph{Faculty of Sciences and Technology}} of the \emph{NOVA University of Lisbon}.
-\\
-nova    & novaims    & folder  &
-The folder for the \href{http:www.novaims.unl.pt}{\emph{Information and Management School}} of the \emph{NOVA University of Lisbon}.
-\\
-\end{tabularx}
-\egroup
-
-% section folder_structure (end)
-
-% ===================
-% = Package options =
-% ===================
-\section{\glsfmtshort{novathesisclass}\ Class Options}
-\label{sec:package_options}
-
-The \gls{novathesisclass}\ can be customized with the options listed below.
-
-\newcommand{\classoption}[3]{\textbf{#1=OPT}\qquad #2\\\qquad\emph{#3}\\}
-
-\noindent
-\begin{ctabular}{@{}p{\linewidth}@{}}
-  \toprule
-%----------------------------------------------------------------------
-  \classoption{doctype}%
-    {phd(*), phdplan, phdprop, msc, mscplan, bsc}%
-    {The type of the document: PhD Thesis (---~Default~---), PhD Plan, PhD Proposal, MSc Dissertation, MSc Plan, BSc Report}
-    \midrule
-%----------------------------------------------------------------------
-  \classoption{school}%
-    {nova/fct(*), nova/fcsh, nova/ims, ul/ist, ul/fc}%
-    {The name of the school. This option changes the typesetting of the cover and some School specific formating, like margins, fonts, paragraph spacing and indentation, etc…}
-    \midrule
-%----------------------------------------------------------------------
-  \classoption{lang}%
-    {en(*), pt}%
-    {The main language for the document.  Currently only Portuguese and English are supported.  Other languages are expected to be support in forthcoming versions.}
-    \midrule
-%----------------------------------------------------------------------
-  \classoption{fontstyle}%
-    {bookman, charter, fourier, kpfonts(*), mathpazo1, mathpazo2, newcent}%
-    {The font set to be used in the document.  Please note that a font set include definitions for the main text, headings, maths, etc.}
-    \midrule
-%----------------------------------------------------------------------
-%----------------------------------------------------------------------
-  \classoption{chapstyle}%
-    {bianchi, bluebox, brotherton, dash, default, elegant(*), ell, ger, hansen, ist, jenor, lyhne, madsen, pedersen, veelo, vz14, vz34, vz43}%
-    {The chapter style, i.e., the look of the chapter beginning.}
-    \midrule
-%----------------------------------------------------------------------
-  \classoption{converlang}%
-    {en, pt(*)}%
-    {The language to be used when typesetting the cover page.}
-    \midrule
-%----------------------------------------------------------------------
-  \classoption{otherlistsat}%
-    {front(*), back}%
-    {Where to put the other lists besides the table of contents. The default is (\texttt{front}) before the main text.  But some scientific areas prefer them at the end of the document (\texttt{back}), just before the Appendixes.}
-    \midrule
-%----------------------------------------------------------------------
-  \classoption{statement}%
-    {true, false(*)}%
-    {Include or don't include the contents of the “\texttt{statement}” file. The default is for this file to be ignored (if it exists).}
-    \midrule
-%----------------------------------------------------------------------
-  \classoption{linkscolor}%
-    {darkblue(*), black}%
-    {The color for all the hyperlinks in the PDF file.  The “\texttt{media=paper}” option (see below) will override this option to “\texttt{black}”}
-    \midrule
-%----------------------------------------------------------------------
-  \classoption{spine}%
-    {true, false(*)}%
-    {Generate the book spine and the last page in the PDF.}
-    \midrule
-%----------------------------------------------------------------------
-  \classoption{biblatex}%
-    {OPT=\{list of options for \texttt{biblatex}\}}%
-    {Customize \texttt{biblatex}, the bibliography management system used in this class. Probably you will want to change the value of the \texttt{biblatex} “\texttt{style}” option. For other customizations of \texttt{biblatex} check its manual.}
-    \midrule
-%----------------------------------------------------------------------
-  \classoption{memoir}%
-    {OPT=\{list of options for \texttt{memoir}\}}%
-    {Customize the base class \texttt{memoir}. The \texttt{memoir} manual should be the first document to be consulted when looking for “\textbf{how can I do this?}” You may what to change the base font size from 11pt to a smaller (10pt) or larger (12pt) size.  Also, remember to change the “\texttt{draft}” to final when your document is finished.}
-    \midrule
-%----------------------------------------------------------------------
-  \classoption{media}%
-    {screen(*), paper}%
-    {Behavior to be customized in the school options/configuration. Expected definitions for screen are: left and right margins are equal and use colored links. Expected definitions for paper are: left and right margins are different and use black links.}
-    \bottomrule
-\end{ctabular}
-
-\section{Additional considerations about the class options}
-\label{sec:additional_considerations}
-
-In this section we will provide some additional considerations about some of the customizations available as class options.
-
-\subsection{The main language}
-\label{sub:the_main_language}
-
-The choice of the main language with the option “\texttt{lang=OPT}” affects:
-
-\begin{itemize}
-  \item \textbf{The order of the summaries.} First is printed the abstract in the main language and then in the foreign language. This means that if your main language for the document in English, you will see first the “abstract” (in English) and then the “resumo” (in Portuguese). If you switch the main language for the document for Portuguese, it will also automatically switch the order of the summaries to “resumo” and then “abstract”.
-  \item \textbf{The names for document sectioning.} E.g., ``Chapter'' vs.\ ``Capítulo'', ``Table of Contents'' vs.\ ``Índice'', ``Figure'' vs.\ ``Figura'', etc.
-  \item \textbf{The type of documents in the bibliography.} E.g., ``Technical Report'' vs.\ ``Relatório Técnico'', ``PhD Thesis'' vs.\ ``Tese de Doutoramento'', etc.
-\end{itemize}
-
-No mater which language you chose, you will always have the appropriate hyphenation rules according to the language at that point. You always get Portuguese hyphenation rules in the ``Resumo'', English hyphenation rules in the ``Abstract'', and then the main language hyphenation rules for the rest of the document.
-
-% subsection the_main_language (end).
-
-% section additional_consideration (end)
-
+\section{LaTeX}
 
 \subsection{Class of Text}
 \label{sub:class_of_text}
@@ -907,19 +426,6 @@ Please have a look at Chapter~\ref{cha:a_short_latex_tutorial_with_examples}, wh
 
 
 
-\section{Example glossary, acronyms, and symbols}
-%
-% \todo[inline]{A a note in a line by itself.}
-%
-This is the first occurrence of an abbreviation: \gls{abbrev}. And now the second occurrence of the same abbreviation: \gls{abbrev}. And a new acronym with capital letter: \Gls{xpt} and reused \gls{xpt}.  Let's also use a few other acronyms such as \gls{aaa}, \gls{aab}, \gls{aba}, \gls{bbb} and \gls{xpt}.
-In geometry, the area enclosed by a circle of radius \gls{r} is $\pi r^2$. Here the Greek letter \gls{pi} is equal to the ratio of the circumference of any circle to its diameter.
-Lets add ``\gls{computer}'' to the glossary! Be carefull with mathematical symbols in acronyms, please see the definition of \gls{mu}.
-%
-% Please note that
-% \begin{center}
-%   \textbf{\large this package and template are not official for FCT/NOVA}.
-% \end{center}
-
-
 
 % \printbibliography[heading=subbibliography, segment=\therefsegment, title={\bibname\ for chapter~\thechapter}]
+
