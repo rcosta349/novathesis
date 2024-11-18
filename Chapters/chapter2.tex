@@ -14,8 +14,6 @@
 \glsresetall
 
 
-\section{Introduction}
-\label{sec:introduction}
 
 In this chapter we further detail the issues related to the Centralized Federated Learning Applications and explain why we should use Decentralized Federated Learning Applications as well as how are we expecting to deal with some issues related to delegating helpers to improve systems performance and avoid adverse effects on the functionality of the devices (the network nodes), but first some fundamental subjects will be introduced for a better general understanding of our proposal.
 
@@ -84,7 +82,7 @@ Broadcasting can be implemented using various techniques:
 \subsection{Decentralized development Frameworks}
 \label{sub:decentralized_development_frameworks}
 
-... 
+...  Appia, Cactus, Yggdrasil, ViSiDia, Babel ...
 
 \subsection{Babel}
 \label{sub:babel}
@@ -151,7 +149,19 @@ Image source: Decentralized Federated Learning: A Survey and Perspective
 \subsection{\gls{DFL} Architecture}
 \label{sub:dfl_architecture}
 
-.......
+\gls{DFL} is built on a \gls{P2P} architecture where clients collaborate directly without a central server.  Each client trains a model on its own data set and disseminates updates to other participants. This design enables the learning process while simultaneously preserving data privacy and avoiding the bottlenecks that are typical of centralized systems. Clients are autonomous entities that determine their own training schedules and communications based on their available resources and specific requirements.\\
+
+Communication between clients is essential in \gls{DFL}. Clients exchange model updates using protocols like one-to-one (direct communication), gossip (randomized sharing), or broadcast (one-to-many). These exchanges follow a network structure or topology, which defines how clients are connected. Common topologies include linear (sequential sharing), ring (cyclical sharing), and mesh (all-to-all communication). More complex hybrid structures combine these approaches to balance efficiency and flexibility.\\
+
+Two principal approaches inform the manner in which models evolve in DFL. The Continual Paradigm involves the transfer of a model between clients, with each client updating the model using their own data. This approach is straightforward and resource-efficient, with a primary focus on personalization. In contrast, the Aggregate Paradigm involves the collection and combination of updates from multiple clients prior to local training. This method results in the generation of a more generalized model, although it demands higher levels of computational resources.\\
+
+The workflow of \gls{DFL} is fundamentally iterative. Clients begin with an initial model, either shared or independently created and follow a loop of training, sharing, and refining. Communication follows the chosen protocol and topology, ensuring that updates propagate effectively across the network. This cycle continues until the models reach convergence, where further updates no longer significantly improve performance. The decentralized structure makes \gls{DFL} adaptable and resilient, capable of handling dynamic environments where client availability or data distribution might change.\\
+
+Dynamic features, like adaptive topologies, allow \gls{DFL} networks to evolve based on external factors, such as client participation or data shifts. Security measures, such as blockchain and differential privacy, are incorporated to ensure the trustworthiness of the system and to safeguard against potential threats, including data leakage and malicious attacks.\\
+
+\gls{DFL} provides a robust, scalable, and privacy-preserving framework for distributed learning. Its architecture makes it particularly suited for applications requiring secure and efficient collaboration, such as healthcare, \gls{IoT}, and social networks.
+
+
 
 \subsection{Challenges in federated learning}
 \label{sub:challenges_in_fl}
@@ -161,7 +171,7 @@ Both CFL and DFL approaches, while innovative in preserving data privacy during 
 \begin{enumerate}
 	\item \textbf{Device and data heterogeneity:}
 	
-	Participating devices in \gls{FL} differ significantly in terms of available memory, network connectivity, and processing power. Additionally, data from different devices is frequently non-IID (not independently and identically distributed), meaning that each device's data may exhibit distinct patterns. TAs local data from each node can differ from the population as a whole, this lack of uniformity makes it more difficult to create an accurate global model. In \gls{DFL}, the added challenge of device diversity requires adaptive methods for synchronising and aggregating model updates. ​
+	Participating devices in \gls{FL} differ significantly in terms of available memory, network connectivity, and processing power. Additionally, data from different devices is frequently non-IID (not independently and identically distributed), meaning that each device's data may exhibit distinct patterns. As local data from each node can differ from the population as a whole, this lack of uniformity makes it more difficult to create an accurate global model. In \gls{DFL}, the added challenge of device diversity requires adaptive methods for synchronising and aggregating model updates. ​
 	\item \textbf{Security and privacy:}
 	
 	Although FL naturally encourages data privacy by storing data locally, it is still susceptible to a number of attacks because client’s shared parameters and gradients may unintentionally reveal sensitive information. Techniques like model inversion (machine learning security threat that involves using the output of a model to infer some of its parameters or architecture) or membership inference attacks (allows an adversary to query a trained machine learning model to predict whether or not a particular example was contained in the model's training dataset) can exploit these shared updates to reconstruct aspects of the original data or identify if specific data points were involved in training. These vulnerabilities demonstrate the necessity of strong privacy-preserving techniques, like secure aggregation or differential privacy, to reduce data leakage and preserve model performance.
@@ -364,7 +374,7 @@ By focusing on standard \gls{SL}, our solution prioritizes simplicity and effici
 
 
 
-\section{FL apps/frameworks used to train models and classify sets}
+\section{\gls{FL} frameworks}
 \label{sec:fl_apps_and_frameworks}
 
 Machine learning as a service (MLaaS) has increased in recent decades due to increased collection and processing of big data, availability of public APIs, new advanced machine learning (\gls{ML}) methods, open source libraries, tools for \gls{ML} analysis large-scale and cloud-based computing. These types of systems tended to be predominantly centralized, but with the emergence of Federated Learning due to concerns in terms of privacy, scalability and devices diversity, new services more dedicated to Federated Learning have started to appear, the so called Federated Learning as a Service. Below will be presented some of these services.
@@ -379,7 +389,7 @@ Machine learning as a service (MLaaS) has increased in recent decades due to inc
 	\item \textbf{PySyft by OpenMined:}
 	 
 	...
-	\item \textbf{OpenFL by Inte:}
+	\item \textbf{OpenFL by Intel:}
 	 
 	...
 	\item \textbf{FLaaS by Telefónica:}
@@ -388,9 +398,14 @@ Machine learning as a service (MLaaS) has increased in recent decades due to inc
 	
 \end{enumerate}
 
+\subsection{\gls{FL} applications used to train models and classify sets}
+\label{sec:fl_apps_fl_frameworks}
+
+....
+
 
 \subsection{Discussion}
-\label{sec:discussion_fl_apps_frameworks}
+\label{sec:discussion_fl_frameworks}
 
 ....
 
