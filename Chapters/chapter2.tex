@@ -84,7 +84,7 @@ Broadcasting can be implemented using various techniques:
 \subsection{Decentralized development Frameworks}
 \label{sub:decentralized_development_frameworks}
 
-...
+... 
 
 \subsection{Babel}
 \label{sub:babel}
@@ -112,15 +112,15 @@ In recent years, Federated Learning (FL) has emerged as a relevant approach for 
 
 Image source: Decentralized Federated Learning: A Survey and Perspective
 
-\subsection{Federated Learning (CFL)}
-\label{sub:federated_learning}
+\subsection{Centralized approach}
+\label{sub:fl_centralized_approach}
 
-In CFL, a central server is tasked with aggregating updates from local models trained independently on each participant’s data. By exchanging model parameters only and not raw data, this configuration protects data privacy. However, the dependency on a single aggregation server introduces several limitations. Firstly, as the number of participating devices rises, the central server may become a bottleneck, resulting in increased latency and reduced scalability. Additionally, this architecture introduces a potential risk of single-point failure, where the central server’s failure can compromise the integrity of the entire training process. Security and trust are further concerns, as participants must trust the central entity with aggregating and distributing model updates without compromising data privacy.
+In \gls{CFL}, a central server is tasked with aggregating updates from local models trained independently on each participant’s data. By exchanging model parameters only and not raw data, this configuration protects data privacy. However, the dependency on a single aggregation server introduces several limitations. Firstly, as the number of participating devices rises, the central server may become a bottleneck, resulting in increased latency and reduced scalability. Additionally, this architecture introduces a potential risk of single-point failure, where the central server’s failure can compromise the integrity of the entire training process. Security and trust are further concerns, as participants must trust the central entity with aggregating and distributing model updates without compromising data privacy.
 
 Due to its simple design and well-established protocols for safe and effective aggregation, \gls{CFL} is still widely used despite all of these disadvantages. In order to minimize the possibility of data leakage, optimization efforts in \gls{CFL} frequently concentrate on lowering communication costs between participants and the server, enhancing the aggregation algorithms, and guaranteeing strong data privacy techniques, such as differential privacy and secure aggregation methods.
 
-\subsection{Decentralized Federated Learning (DFL)}
-\label{sub:decentralized_federated_learning_1}
+\subsection{Decentralized approach}
+\label{sub:fl_decentralized_approach}
 
 \gls{DFL} reduces dependency on a central server, which helps to overcome some of the main limitations of CFL. Since model parameters are shared and aggregated in a distributed manner rather than via a single central aggregator, DFL distributes computational responsibility more widely throughout the network.
 However, even without a central server, \gls{DFL} still maintains a mechanism for updating a global model through decentralized aggregation strategies, often involving clusters or peer-to-peer structures where nodes collaborate to aggregate model parameters locally before updating the shared model.
@@ -148,6 +148,33 @@ Image source: Decentralized Federated Learning: A Survey and Perspective
 
 \gls{DFL} represents an extension of \gls{FL} that eliminates the necessity for a central coordinating server. In contrast, participants communicate directly with one another in a \gls{P2P} network to train a global machine learning model. 
 
+\subsection{\gls{DFL} Architecture}
+\label{sub:dfl_architecture}
+
+.......
+
+\subsection{Challenges in federated learning}
+\label{sub:challenges_in_fl}
+
+Both CFL and DFL approaches, while innovative in preserving data privacy during collaborative learning, face several critical challenges:
+
+\begin{enumerate}
+	\item \textbf{Device and data heterogeneity:}
+	
+	Participating devices in \gls{FL} differ significantly in terms of available memory, network connectivity, and processing power. Additionally, data from different devices is frequently non-IID (not independently and identically distributed), meaning that each device's data may exhibit distinct patterns. TAs local data from each node can differ from the population as a whole, this lack of uniformity makes it more difficult to create an accurate global model. In \gls{DFL}, the added challenge of device diversity requires adaptive methods for synchronising and aggregating model updates. ​
+	\item \textbf{Security and privacy:}
+	
+	Although FL naturally encourages data privacy by storing data locally, it is still susceptible to a number of attacks because client’s shared parameters and gradients may unintentionally reveal sensitive information. Techniques like model inversion (machine learning security threat that involves using the output of a model to infer some of its parameters or architecture) or membership inference attacks (allows an adversary to query a trained machine learning model to predict whether or not a particular example was contained in the model's training dataset) can exploit these shared updates to reconstruct aspects of the original data or identify if specific data points were involved in training. These vulnerabilities demonstrate the necessity of strong privacy-preserving techniques, like secure aggregation or differential privacy, to reduce data leakage and preserve model performance.
+	\item \textbf{Scalability and fault tolerance:} 
+	
+	While DFL enhances fault tolerance by eliminating single points of failure, scaling DFL networks remains challenging. As the network expands, the demands for communication and synchronisation among nodes grow, which can strain system performance. To manage large numbers of participants efficiently, strategies like effective node clustering, load balancing, and advanced fault tolerance techniques become essential. These methods help distribute workloads more equally across the network and prevent communication bottlenecks, ensuring that model accuracy and system efficiency are maintained as the network scales
+
+\end{enumerate}
+
+\subsection{\gls{ML} Models}
+\label{sub:ml_models}
+
+.......
 
 \subsection{Real world Applications}
 \label{sub:real_worl_applications}
@@ -170,29 +197,6 @@ DFL framework development depends on various key factors, such as relevant appli
 
 \end{enumerate}
 
-\subsection{\gls{ML} Models}
-\label{sub:ml_models}
-
-.......
-
-
-\subsection{Challenges in federated learning}
-\label{sub:challenges_in_fl}
-
-Both CFL and DFL approaches, while innovative in preserving data privacy during collaborative learning, face several critical challenges:
-
-\begin{enumerate}
-	\item \textbf{Device and data heterogeneity:}
-	
-	Participating devices in \gls{FL} differ significantly in terms of available memory, network connectivity, and processing power. Additionally, data from different devices is frequently non-IID (not independently and identically distributed), meaning that each device's data may exhibit distinct patterns. TAs local data from each node can differ from the population as a whole, this lack of uniformity makes it more difficult to create an accurate global model. In \gls{DFL}, the added challenge of device diversity requires adaptive methods for synchronising and aggregating model updates. ​
-	\item \textbf{Security and privacy:}
-	
-	Although FL naturally encourages data privacy by storing data locally, it is still susceptible to a number of attacks because client’s shared parameters and gradients may unintentionally reveal sensitive information. Techniques like model inversion (machine learning security threat that involves using the output of a model to infer some of its parameters or architecture) or membership inference attacks (allows an adversary to query a trained machine learning model to predict whether or not a particular example was contained in the model's training dataset) can exploit these shared updates to reconstruct aspects of the original data or identify if specific data points were involved in training. These vulnerabilities demonstrate the necessity of strong privacy-preserving techniques, like secure aggregation or differential privacy, to reduce data leakage and preserve model performance.
-	\item \textbf{Scalability and fault tolerance:} 
-	
-	While DFL enhances fault tolerance by eliminating single points of failure, scaling DFL networks remains challenging. As the network expands, the demands for communication and synchronisation among nodes grow, which can strain system performance. To manage large numbers of participants efficiently, strategies like effective node clustering, load balancing, and advanced fault tolerance techniques become essential. These methods help distribute workloads more equally across the network and prevent communication bottlenecks, ensuring that model accuracy and system efficiency are maintained as the network scales
-
-\end{enumerate}
 
 \section{Split Learning}
 \label{sec:split_learning}
@@ -300,8 +304,8 @@ SL's privacy and resource-efficiency features make it suitable for various domai
 
 \end{enumerate}
 
-\subsection{Unresolved Problems}
-\label{sec:sl_unresolved_problems}
+\subsection{Open Challanges}
+\label{sec:sl_open_challenges}
 
 Several studies have identified challenges in SL that remain unresolved, such as Privacy Leakage which despite \gls{SL}'s design to protect data privacy, research has demonstrated the existence of potential vulnerabilities that could allow adversaries to reconstruct the original data from gradients or shared activations. This suggests that \gls{SL} may not provide comprehensive protection for sensitive information.
 
