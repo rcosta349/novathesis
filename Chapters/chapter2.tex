@@ -82,19 +82,46 @@ Broadcasting can be implemented using various techniques:
 \subsection{Decentralized development Frameworks}
 \label{sub:decentralized_development_frameworks}
 
-...  Appia, Cactus, Yggdrasil, ViSiDia, Babel ...
+The design and implementation of distributed systems are inherently complex due to inherent challenges such as fault tolerance, concurrency, and efficient communication. In order to address these difficulties, researchers and practitioners have developed a number of frameworks which abstract low-level details, enabling developers to focus on the core logic of distributed protocols. These frameworks differ in their design philosophies, varying from educational tools for simulating algorithms to robust platforms for real-world deployment.
 
-\subsection{Babel}
-\label{sub:babel}
+This section presents a review of several prominent decentralized development frameworks, namely Appia, Cactus, Yggdrasil, ViSiDia, and Babel, identifying features, strengths, and limitations of these frameworks in supporting the development of dependable distributed systems.
 
-Babel is a framework that promotes event driven programming and it helps in the development of distributed protocols within a process that can execute any number of different protocols that communicate with each other, inside or outside the same process. The system is designed with a generic architecture that allows for the implementation of multiple distributed protocols and provides networking components that can capture different capabilities (e.g., \gls{P2P}, Client/Server, ...). 
-Babel facilitates the development process by allowing the developer to concentrate on the fundamental aspects of the protocol, without having to address the inherent complications associated with low-level details.
+\begin{enumerate}
+	\item \textbf{Appia:}
+	
+	A Java-based toolkit leveraging inheritance for creating custom protocols. It introduces the concept of channels and sessions as abstractions, which are used to bind protocols into services. 
+	However, this approach requires developers to manually stack protocols, which restricts the flexibility of the interaction. Appia uses a single execution thread for all protocols, which can cause significant performance bottlenecks.
+	
+	\item \textbf{Cactus:}
+
+	A C++ framework designed to achieve optimal performance and expressiveness. It uses meta-protocols composed of smaller protocols that execute asynchronously, offering modularity.
+	However, it does not manage concurrency, leaving developers responsible for addressing these challenges.
+	
+	\item \textbf{Yggdrasil:}
+	
+	A lightweight and efficient C framework, designed for use in both wireless ad hoc and traditional wired IP networks. The framework is designed to facilitate the processing of four distinct types of events: network messages, timed events, direct interactions within the protocol, and indirect interactions. It supports concurrent protocol execution while abstracting concurrency complexities.
+	However, Yggdrasil only supports a single active network abstraction per instance (e.g., wireless or wired), and its reliance on C necessitates rigorous technical discipline to prevent issues such as invalid memory access.
+	
+	\item \textbf{ViSiDia:}
+	
+	A Java-based framework designed for understanding and visualizing distributed algorithms. It facilitates the design and simulation of these algorithms, making it an educational tool. The framework's primary objective is to facilitate the comprehension of algorithms, rather than to assess their performance in real-world scenarios or to analyze their interactions with protocols.
+	
+	\item \textbf{Babel:}
+	 
+	Babel is a framework that promotes event driven programming and it helps in the development of distributed protocols within a process that can execute any number of different protocols that communicate with each other, inside or outside the same process. The system is designed with a generic architecture that allows for the implementation of multiple distributed protocols and provides networking components that can capture different capabilities (e.g., \gls{P2P}, Client/Server, ...). 
+	It facilitates the development process by allowing the developer to concentrate on the fundamental aspects of the protocol, without having to address the inherent complications associated with low-level details.
+	
+\end{enumerate}
 
 \subsubsection{Babel swarm}
 \label{sec:babel_swarm}
 
 ....
 
+\subsubsection{Discussion}
+\label{sec:decentralized_development_frameworks}
+
+....
 
 \section{Federated Learning (FL)}
 \label{sec:federated_laerning}
@@ -120,10 +147,13 @@ Due to its simple design and well-established protocols for safe and effective a
 \subsection{Decentralized approach}
 \label{sub:fl_decentralized_approach}
 
-\gls{DFL} reduces dependency on a central server, which helps to overcome some of the main limitations of CFL. Since model parameters are shared and aggregated in a distributed manner rather than via a single central aggregator, DFL distributes computational responsibility more widely throughout the network.
+\gls{DFL} reduces dependency on a central server, which helps to overcome some of the main limitations of CFL. Since model parameters are shared and aggregated in a distributed manner rather than via a single central aggregator, DFL distributes computational responsibility more widely throughout the network. 
+
 However, even without a central server, \gls{DFL} still maintains a mechanism for updating a global model through decentralized aggregation strategies, often involving clusters or peer-to-peer structures where nodes collaborate to aggregate model parameters locally before updating the shared model.
+
 This decentralized approach minimizes bottlenecks and reduces the risk of single points of failure, making DFL inherently more fault tolerant and scalable. Additionally, it distributes trust across the entire network rather than concentrating it in a single entity, which can alleviate some concerns about trustworthiness in centralized environments. However, because node interactions are asynchronous, DFL makes it more difficult to maintain consistency in model updates, which can result in stale updates and slower convergence. It also increases communication overhead, as nodes must frequently exchange model parameters with their peers to keep the overall model aligned.
-Given that there is no central authority, it can be difficult to detect malicious participants during DFL, making security and privacy issues difficult to resolve. For \gls{DFL} systems to reduce the risk of malicious attacks or data exposure, secure aggregation, anomaly detection, and model update verification require strong, decentralized protocols. These mechanisms are essential to maintain the integrity of the model and the privacy of participants in the decentralized framework. 
+
+Given that there is no central authority, it can be difficult to detect malicious participants during \gls{DFL}, making security and privacy issues difficult to resolve. For \gls{DFL} systems to reduce the risk of malicious attacks or data exposure, secure aggregation, anomaly detection, and model update verification require strong, decentralized protocols. These mechanisms are essential to maintain the integrity of the model and the privacy of participants in the decentralized framework. 
 
 
 \subsection{Discussion}
@@ -149,15 +179,15 @@ Image source: Decentralized Federated Learning: A Survey and Perspective
 \subsection{\gls{DFL} Architecture}
 \label{sub:dfl_architecture}
 
-\gls{DFL} is built on a \gls{P2P} architecture where clients collaborate directly without a central server.  Each client trains a model on its own data set and disseminates updates to other participants. This design enables the learning process while simultaneously preserving data privacy and avoiding the bottlenecks that are typical of centralized systems. Clients are autonomous entities that determine their own training schedules and communications based on their available resources and specific requirements.\\
+\gls{DFL} is built on a \gls{P2P} architecture where clients collaborate directly without a central server.  Each client trains a model on its own data set and disseminates updates to other participants. This design enables the learning process while simultaneously preserving data privacy and avoiding the bottlenecks that are typical of centralized systems. Clients are autonomous entities that determine their own training schedules and communications based on their available resources and specific requirements.
 
-Communication between clients is essential in \gls{DFL}. Clients exchange model updates using protocols like one-to-one (direct communication), gossip (randomized sharing), or broadcast (one-to-many). These exchanges follow a network structure or topology, which defines how clients are connected. Common topologies include linear (sequential sharing), ring (cyclical sharing), and mesh (all-to-all communication). More complex hybrid structures combine these approaches to balance efficiency and flexibility.\\
+Communication between clients is essential in \gls{DFL}. Clients exchange model updates using protocols like one-to-one (direct communication), gossip (randomized sharing), or broadcast (one-to-many). These exchanges follow a network structure or topology, which defines how clients are connected. Common topologies include linear (sequential sharing), ring (cyclical sharing), and mesh (all-to-all communication). More complex hybrid structures combine these approaches to balance efficiency and flexibility.
 
-Two principal approaches inform the manner in which models evolve in DFL. The Continual Paradigm involves the transfer of a model between clients, with each client updating the model using their own data. This approach is straightforward and resource-efficient, with a primary focus on personalization. In contrast, the Aggregate Paradigm involves the collection and combination of updates from multiple clients prior to local training. This method results in the generation of a more generalized model, although it demands higher levels of computational resources.\\
+Two principal approaches inform the manner in which models evolve in DFL. The Continual Paradigm involves the transfer of a model between clients, with each client updating the model using their own data. This approach is straightforward and resource-efficient, with a primary focus on personalization. In contrast, the Aggregate Paradigm involves the collection and combination of updates from multiple clients prior to local training. This method results in the generation of a more generalized model, although it demands higher levels of computational resources.
 
-The workflow of \gls{DFL} is fundamentally iterative. Clients begin with an initial model, either shared or independently created and follow a loop of training, sharing, and refining. Communication follows the chosen protocol and topology, ensuring that updates propagate effectively across the network. This cycle continues until the models reach convergence, where further updates no longer significantly improve performance. The decentralized structure makes \gls{DFL} adaptable and resilient, capable of handling dynamic environments where client availability or data distribution might change.\\
+The workflow of \gls{DFL} is fundamentally iterative. Clients begin with an initial model, either shared or independently created and follow a loop of training, sharing, and refining. Communication follows the chosen protocol and topology, ensuring that updates propagate effectively across the network. This cycle continues until the models reach convergence, where further updates no longer significantly improve performance. The decentralized structure makes \gls{DFL} adaptable and resilient, capable of handling dynamic environments where client availability or data distribution might change.
 
-Dynamic features, like adaptive topologies, allow \gls{DFL} networks to evolve based on external factors, such as client participation or data shifts. Security measures, such as blockchain and differential privacy, are incorporated to ensure the trustworthiness of the system and to safeguard against potential threats, including data leakage and malicious attacks.\\
+Dynamic features, like adaptive topologies, allow \gls{DFL} networks to evolve based on external factors, such as client participation or data shifts. Security measures, such as blockchain and differential privacy, are incorporated to ensure the trustworthiness of the system and to safeguard against potential threats, including data leakage and malicious attacks.
 
 \gls{DFL} provides a robust, scalable, and privacy-preserving framework for distributed learning. Its architecture makes it particularly suited for applications requiring secure and efficient collaboration, such as healthcare, \gls{IoT}, and social networks.
 
@@ -174,10 +204,14 @@ Both CFL and DFL approaches, while innovative in preserving data privacy during 
 	Participating devices in \gls{FL} differ significantly in terms of available memory, network connectivity, and processing power. Additionally, data from different devices is frequently non-IID (not independently and identically distributed), meaning that each device's data may exhibit distinct patterns. As local data from each node can differ from the population as a whole, this lack of uniformity makes it more difficult to create an accurate global model. In \gls{DFL}, the added challenge of device diversity requires adaptive methods for synchronising and aggregating model updates. ​
 	\item \textbf{Security and privacy:}
 	
-	Although FL naturally encourages data privacy by storing data locally, it is still susceptible to a number of attacks because client’s shared parameters and gradients may unintentionally reveal sensitive information. Techniques like model inversion (machine learning security threat that involves using the output of a model to infer some of its parameters or architecture) or membership inference attacks (allows an adversary to query a trained machine learning model to predict whether or not a particular example was contained in the model's training dataset) can exploit these shared updates to reconstruct aspects of the original data or identify if specific data points were involved in training. These vulnerabilities demonstrate the necessity of strong privacy-preserving techniques, like secure aggregation or differential privacy, to reduce data leakage and preserve model performance.
+	Although FL naturally encourages data privacy by storing data locally, it is still susceptible to a number of attacks because client’s shared parameters and gradients may unintentionally reveal sensitive information. Techniques like model inversion (machine learning security threat that involves using the output of a model to infer some of its parameters or architecture) or membership inference attacks (allows an adversary to query a trained machine learning model to predict whether or not a particular example was contained in the model's training dataset) can exploit these shared updates to reconstruct aspects of the original data or identify if specific data points were involved in training. 
+	
+	These vulnerabilities demonstrate the necessity of strong privacy-preserving techniques, like secure aggregation or differential privacy, to reduce data leakage and preserve model performance.
 	\item \textbf{Scalability and fault tolerance:} 
 	
-	While DFL enhances fault tolerance by eliminating single points of failure, scaling DFL networks remains challenging. As the network expands, the demands for communication and synchronisation among nodes grow, which can strain system performance. To manage large numbers of participants efficiently, strategies like effective node clustering, load balancing, and advanced fault tolerance techniques become essential. These methods help distribute workloads more equally across the network and prevent communication bottlenecks, ensuring that model accuracy and system efficiency are maintained as the network scales
+	While DFL enhances fault tolerance by eliminating single points of failure, scaling DFL networks remains challenging. As the network expands, the demands for communication and synchronisation among nodes grow, which can strain system performance. To manage large numbers of participants efficiently, strategies like effective node clustering, load balancing, and advanced fault tolerance techniques become essential. 
+	
+	These methods help distribute workloads more equally across the network and prevent communication bottlenecks, ensuring that model accuracy and system efficiency are maintained as the network scales
 
 \end{enumerate}
 
@@ -187,23 +221,34 @@ Both CFL and DFL approaches, while innovative in preserving data privacy during 
 .......
 
 \subsection{Real world Applications}
-\label{sub:real_worl_applications}
+\label{sub:real_world_applications}
 
 DFL framework development depends on various key factors, such as relevant application scenarios, sources of information acquisition, information processing units and perceptual prediction modules, among others. And so DFL has been adopted in several areas, such as, automotive industry, healthcare, IoT industry, social networks, etc.
 
 \begin{enumerate}
 	\item \textbf{Connected and Automated Vehicles:}
 	
-	Connected and Automated Vehicles (CAVs) serve as a robust hardware infrastructure for DFL, where each node uses integrated batteries, various sensors, computing units, storage devices and much more. Vehicle-to-vehicle (V2V) communication is a framework that already supports several applications in networks of independent and connected vehicles, creating a basis for the application of Distributed Federated Learning (DFL) in Connected Autonomous Vehicles (CAVs). A V2V approach with FL allows vehicles to share updated knowledge with each other, which is crucial for the safe and efficient operation of vehicle networks. Studies such as that by Lu et al. demonstrate a practical application using Roadside Units (RSUs) act as intermediaries for routing vehicle identities and essential data, facilitating the direct exchange of information between vehicles when necessary. This system, in addition to protecting data privacy, helps reduce the risk of leaking information in vehicular cyber-physical environments (VCPS), enabling safe and efficient collaboration in real time.
+	Connected and Automated Vehicles (CAVs) serve as a robust hardware infrastructure for DFL, where each node uses integrated batteries, various sensors, computing units, storage devices and much more. Vehicle-to-vehicle (V2V) communication is a framework that already supports several applications in networks of independent and connected vehicles, creating a basis for the application of Distributed Federated Learning (DFL) in Connected Autonomous Vehicles (CAVs). 
+	
+	A V2V approach with FL allows vehicles to share updated knowledge with each other, which is crucial for the safe and efficient operation of vehicle networks. Studies such as that by Lu et al. demonstrate a practical application using Roadside Units (RSUs) act as intermediaries for routing vehicle identities and essential data, facilitating the direct exchange of information between vehicles when necessary. 
+	
+	This system, in addition to protecting data privacy, helps reduce the risk of leaking information in vehicular cyber-physical environments (VCPS), enabling safe and efficient collaboration in real time.
+	
 	\item \textbf{Mobile Services:}
 	
 	Mobile services based on IoT devices are an important application scenario for \gls{DFL}, making use of the capabilities of smartphones, PCs, among others. These devices are equipped with several types of sensors and cameras that allow them to collect a big range of information sources. Unlike the relatively fixed connectivity of CAVs, mobile IoT devices offer more flexible systems and platforms to support a wide range of applications.
+	
 	\item \textbf{HealthCare:}
 	
-	Hospital centers and clinics are beginning to shift from \gls{CFL} to \gls{DFL} due to their diverse private data and computing resources. Warnat-Herresthal et al. presented the Swarm Learning, a \gls{DFL} framework that deals with 4 heterogeneous disease use cases, including COVID-19, tuberculosis, leukaemia and lung pathology. The framework incorporates blockchain smart contracts to provide additional security, and dynamically selects leaders to aggregate model parameters at each iteration.
+	Hospital centers and clinics are beginning to shift from \gls{CFL} to \gls{DFL} due to their diverse private data and computing resources. Warnat-Herresthal et al. presented the Swarm Learning, a \gls{DFL} framework that deals with 4 heterogeneous disease use cases, including COVID-19, tuberculosis, leukaemia and lung pathology. 
+	
+	The framework incorporates blockchain smart contracts to provide additional security, and dynamically selects leaders to aggregate model parameters at each iteration.
+	
 	\item \textbf{Satellites and Unmanned Aerial Vehicles:}
 	
-	UAVs and satellites in dynamic computing environments have vast amounts of sensitive data for remote sensing, target recognition, and military-related tasks under constraints of limited resources. This makes them suited to the benefits of DFL. Bandwidth is a valuable resource for mobile UAVs and satellites. A potential solution is that the application of a \gls{DFL} framework based on broadcast gossip, customised to dynamic geographical locations, can significantly reduce bandwidth requirements and the consumption of communication resources. Additionally, due to its dynamic nature and highly variable data, \gls{DFL} can also improve real-time responsiveness, adaptability and efficiency of task execution.
+	UAVs and satellites in dynamic computing environments have vast amounts of sensitive data for remote sensing, target recognition, and military-related tasks under constraints of limited resources. This makes them suited to the benefits of DFL. Bandwidth is a valuable resource for mobile UAVs and satellites. A potential solution is that the application of a \gls{DFL} framework based on broadcast gossip, customised to dynamic geographical locations, can significantly reduce bandwidth requirements and the consumption of communication resources. 
+	
+	Additionally, due to its dynamic nature and highly variable data, \gls{DFL} can also improve real-time responsiveness, adaptability and efficiency of task execution.
 
 \end{enumerate}
 
@@ -255,7 +300,9 @@ SL's privacy and resource-efficiency features make it suitable for various domai
 \begin{enumerate}
 	\item \textbf{Healthcare:}
 	
-	In collaborative medical AI, hospitals can share insights from their data without sharing actual data. For instance, in diagnosing conditions from imaging data, only processed features are sent to the helper, allowing each hospital to maintain patient confidentiality. \gls{SL} enhance this capability by accelerating training across numerous institutions without centralizing data. Currently, image processing applications in hospital imaging services use this type of mechanism and are already able to detect anomalies and, for example, monitor the development of nodules, comparing old images with current ones. 
+	In collaborative medical AI, hospitals can share insights from their data without sharing actual data. For instance, in diagnosing conditions from imaging data, only processed features are sent to the helper, allowing each hospital to maintain patient confidentiality. \gls{SL} enhance this capability by accelerating training across numerous institutions without centralizing data. 
+	
+	Currently, image processing applications in hospital imaging services use this type of mechanism and are already able to detect anomalies and, for example, monitor the development of nodules, comparing old images with current ones. 
 	\item \textbf{Smart Cities and 6G Networks:}
 	
 	SL fits well with the distributed and resource-intensive requirements of future smart cities. SL can support real-time applications such as traffic monitoring and public safety by distributing the computational load across edge servers and mobile devices. In these dynamic configurations, \gls{SL}’s ability to utilize multiple edge nodes in a distributed manner is particularly advantageous. 
@@ -408,87 +455,6 @@ Machine learning as a service (MLaaS) has increased in recent decades due to inc
 \label{sec:discussion_fl_frameworks}
 
 ....
-
-\section{LaTeX}
-
-\subsection{Class of Text}
-\label{sub:class_of_text}
-
-You must choose the class of text for the document. The available options are:
-
-\begin{enumerate}
-  \item \textbf{bsc} --- BSc graduation report.
-  \item \textbf{*mscplan} --- Preparation of MSc dissertation. This is a preliminary report graduate students at DI-FCT-NOVA must prepare to conclude the first semester of the two-semesters MSc work. The files specified by \verb!\ntdedicatoryfile! and \verb!\acknowledgmentsfile! are ignored, even if present, for this class of document.
-  \item \textbf{msc} --- MSc dissertation.
-  \item \textbf{phdprop} ---  Proposal for a PhD work. The files specified by \verb!\ntdedicatoryfile! and \verb!\acknowledgmentsfile! are ignored, even if present, for this class of document.
-  \item \textbf{prepphd} ---  Preparation of a PhD thesis. This is a preliminary report PhD students at DI-FCT-NOVA must prepare before the end of the third semester of PhD work. The files specified by \verb!\ntdedicatoryfile! and \verb!\acknowledgmentsfile! are ignored, even if present, for this class of document.
-  \item \textbf{phd} --- PhD dissertation.
-\end{enumerate}
-% subsection class_of_text (end)
-
-% ============
-% = Printing =
-% ============
-\subsection{Printing}
-\label{sub:printing}
-
-You must choose how your document will be printed. The available options are:
-\begin{enumerate}
-  \item \textbf{oneside} --- Single side page printing.
-  \item \textbf{*twoside} --- Double sided page printing.
-\end{enumerate}
-% subsection printing (end)
-
-% =============
-% = Font Size =
-% =============
-\subsection{Font Size}
-\label{ssec:font_size}
-
-You must select the encoding for your text. The available options are:
-\begin{enumerate}
-  \item \textbf{11pt} --- Eleven (11) points font size.
-  \item \textbf{*12pt} --- Twelve (12) points font size. You should really stick to 12pt\ldots
-\end{enumerate}
-% subsection font_size (end)
-
-% =================
-% = Text encoding =
-% =================
-\subsection{Text Encoding}
-\label{ssec:text_encoding}
-
-You must choose the font size for your document. The available options are:
-\begin{enumerate}
-  \item \textbf{latin1} --- Use Latin-1 (\href{http://en.wikipedia.org/wiki/ISO/IEC_8859-1}{ISO 8859-1}) encoding.  Most probably you should use this option if you use Windows;
-  \item \textbf{utf8} --- Use \href{http://en.wikipedia.org/wiki/UTF-8}{UTF8} encoding.    Most probably you should use this option if you are not using Windows.
-\end{enumerate}
-% subsection font_size (end)
-
-% ============
-% = Examples =
-% ============
-\subsection{Examples}
-\label{ssec:examples}
-
-Let's have a look at a couple of examples:
-
-\begin{itemize}
-  \item Preparation of PhD thesis, in portuguese, with 11pt size and to be printed single sided (I wonder why one would do this!)\\
-  \verb!\documentclass[prepphd,pt,11pt,oneside,latin1]{thesisdifct-nova}!
-  \item MSc dissertation, in English, with 12pt size and to be printed double sided\\
-  \verb!\documentclass[msc,en,12pt,twoside,utf8]{thesisdifct-nova}!
-\end{itemize}
-% subsection examples (end)
-
-\section{How to Write Using \LaTeX}
-\label{sec:how_to_write_using_latex}
-
-Please have a look at Chapter~\ref{cha:a_short_latex_tutorial_with_examples}, where you may find many examples of \LaTeX constructs, such as Sectioning, inserting Figures and Tables, writing Equations, Theorems and algorithms, exhibit code listings, etc.
-
-% section how_to_write_using_latex (end)
-
-
 
 
 % \printbibliography[heading=subbibliography, segment=\therefsegment, title={\bibname\ for chapter~\thechapter}]
