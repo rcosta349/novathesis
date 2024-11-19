@@ -18,6 +18,7 @@
 \setlength\epigraphwidth{12.5cm}
 \setlength\epigraphrule{0pt}
 
+%\ntindex[novathesis!Citation]{}
 
 In recent years, the exponential growth of data generated through distributed devices and platforms has driven the development of collaborative learning methods such as Federated Learning (FL). Federated learning allows a network of participants to train a machine learning model without centralizing data, addressing critical issues related to data privacy and security. However, FL still faces inherent limitations, particularly in its dependence on a central aggregator and the computational resources required on individual devices to train complex models. Furthermore, reliance on centralized platforms raises significant privacy concerns as they can introduce vulnerabilities or potential access points to sensitive data.
 Alternatively, Split Learning (SL) has emerged as a promising approach within distributed learning paradigms, allowing computational load to be shared among participants, which can help alleviate resource constraints and increase data privacy by increasing sensitive data that remains on the source device.
@@ -43,17 +44,27 @@ To achieve this, the study will focus on the following key areas:
 
 \begin{enumerate}
 
- \item \ntindex[novathesis!Citation]{}Decentralized Federated Learning: Design a federated learning system that operates in a decentralized manner, reducing reliance on central servers and enabling greater autonomy for participants.
+ \item \textbf{Decentralized Federated Learning:} 
  
- \item Privacy: Implement privacy-preserving mechanisms that ensure sensitive data remains secure on the source devices, minimizing data exposure risks within the learning process.
+ Design a federated learning system that operates in a decentralized manner, reducing reliance on central servers and enabling greater autonomy for participants.
+ 
+ \item \textbf{Privacy:}
+ 
+ Implement privacy-preserving mechanisms that ensure sensitive data remains secure on the source devices, minimizing data exposure risks within the learning process.
 
  
- \item Split Learning: Incorporate split learning techniques to distribute computational loads, allowing resource-constrained devices to participate effectively in the model training without overextending their capabilities.
+ \item \textbf{Split Learning:} 
+ 
+ Incorporate split learning techniques to distribute computational loads, allowing resource-constrained devices to participate effectively in the model training without overextending their capabilities.
 
  
- \item Delegation Protocols:  Develop delegation protocols that allow to assign an idle node with enough processing capabilities available as a helper to train a model.
+ \item \textbf{Delegation Protocols:}  
+ 
+ Develop delegation protocols that allow to assign an idle node with enough processing capabilities available as a helper to train a model.
 
-\item Helper Membership Management: Establish mechanisms for helper membership management, enabling participants to support one another in the training process and foster a robust, collaborative learning environment.
+\item \textbf{Helper Membership Management:}
+ 
+Establish mechanisms for helper membership management, enabling participants to support one another in the training process and foster a robust, collaborative learning environment.
 
 
 \end{enumerate}
