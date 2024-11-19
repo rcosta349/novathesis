@@ -173,13 +173,7 @@ This decentralized approach minimizes bottlenecks and reduces the risk of single
 Given that there is no central authority, it can be difficult to detect malicious participants during \gls{DFL}, making security and privacy issues difficult to resolve. For \gls{DFL} systems to reduce the risk of malicious attacks or data exposure, secure aggregation, anomaly detection, and model update verification require strong, decentralized protocols. These mechanisms are essential to maintain the integrity of the model and the privacy of participants in the decentralized framework. 
 
 
-\subsection{Discussion}
-\label{sub:discussion_fl}
-
-Considering these two approaches, we will focus on Decentralized Federated Learning (\gls{DFL}) to ensure that personal data stays on local devices and is not shared across the network. With \gls{DFL}, only model updates such as parameters and gradients are shared, not the actual data, which helps protect privacy more effectively than a centralized approach.
-By choosing \gls{DFL}, our goal is to create a learning network that respects user privacy while remaining resilient and efficient, even as it grows.
-
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[height=3in]{cfl-vs-dfl}
   \caption{CFL versus DFL}
@@ -187,6 +181,15 @@ By choosing \gls{DFL}, our goal is to create a learning network that respects us
 \end{figure}
 
 Image source: Decentralized Federated Learning: A Survey and Perspective
+
+
+\subsection{Discussion}
+\label{sub:discussion_fl}
+
+Considering these two approaches, we will focus on Decentralized Federated Learning (\gls{DFL}) to ensure that personal data stays on local devices and is not shared across the network. With \gls{DFL}, only model updates such as parameters and gradients are shared, not the actual data, which helps protect privacy more effectively than a centralized approach.
+By choosing \gls{DFL}, our goal is to create a learning network that respects user privacy while remaining resilient and efficient, even as it grows.
+
+
 
 \section{Decentralized Federated Learning (DFL)}
 \label{sub:decentralized_federated_learning_2}
